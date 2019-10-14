@@ -5,7 +5,6 @@
  */
 package assignment3sample.Interface;
 
-import assignment3sample.Business.CustomerDirectory;
 import assignment3sample.Business.Flight;
 import assignment3sample.Business.Flightschedule;
 import java.awt.CardLayout;
@@ -22,15 +21,16 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    private CustomerDirectory custdir;
     private Flightschedule carInfor;
     private List<String> brandList;
     
+    
     public MainFrame() {
         initComponents();
-        custdir = new CustomerDirectory();
         carInfor = new Flightschedule();
         brandList = new ArrayList<>(Arrays.asList("Ferrari", "BMW", "Toyota", "GM"));
+        
+        
     }
 
     /**
@@ -62,6 +62,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Register Airlines");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Manage Customer");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -128,13 +133,17 @@ public class MainFrame extends javax.swing.JFrame {
         layout.next(rightPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-        BookFlightPanel bfPanel = new BookFlightPanel(custdir, rightPanel, carInfor, brandList);
-        rightPanel.add("BookFlightPanel", bfPanel);
-        CardLayout layout = (CardLayout) rightPanel.getLayout();
-        layout.next(rightPanel);
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ManageBrandPanel amPanel = new ManageBrandPanel(this.rightPanel, this.brandList);
+        this.rightPanel.add("Productmngpanel", amPanel);
+        CardLayout cardLayout = (CardLayout) this.rightPanel.getLayout();
+        cardLayout.next(rightPanel);
         
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
