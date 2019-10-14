@@ -90,7 +90,7 @@
                                   <EmptySpace min="-2" pref="525" max="-2" attributes="0"/>
                                   <Component id="btnFind" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="749" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="749" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="26" pref="28" max="32767" attributes="0"/>
@@ -107,9 +107,9 @@
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnFind" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="285" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnView" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">

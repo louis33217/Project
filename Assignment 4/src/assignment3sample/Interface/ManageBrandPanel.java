@@ -5,8 +5,6 @@
  */
 package assignment3sample.Interface;
 
-import assignment3sample.Business.Flight;
-import assignment3sample.Business.Flightschedule;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,34 +17,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageBrandPanel extends javax.swing.JPanel {
 
-    public class Plane{
-        private int numofflight;
-       
-
-      
-        public int getNumofflight() {
-            return numofflight;
-            
-        }
-
-        public void setNumofflight(int numofflight) {
-            this.numofflight = numofflight;
-        }
-
-        
-        
-    }
-        
-    
+    /**
+     * Creates new form ManageBrandPanel
+     */
     private JPanel rightPanel;
     private List<String> brandList;
-    private List<Integer> NumberofPlanes;
     
     public ManageBrandPanel(JPanel rightPanel, List<String> brandList) {
         initComponents();
         this.rightPanel = rightPanel;
         this.brandList = brandList;
-       
         populate();
     }
     
@@ -72,18 +52,16 @@ public class ManageBrandPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBrand = new javax.swing.JTable();
-        AirlineAddTxt = new javax.swing.JTextField();
+        txtAdd = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         tblBrand.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Airline"
+                "Brand"
             }
         ) {
             Class[] types = new Class [] {
@@ -106,13 +84,13 @@ public class ManageBrandPanel extends javax.swing.JPanel {
             tblBrand.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        AirlineAddTxt.addActionListener(new java.awt.event.ActionListener() {
+        txtAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AirlineAddTxtActionPerformed(evt);
+                txtAddActionPerformed(evt);
             }
         });
 
-        btnAdd.setText("Add a new airline");
+        btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -126,10 +104,6 @@ public class ManageBrandPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Add a new one:");
-
-        jLabel2.setText("All Airlines In Service");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,51 +111,39 @@ public class ManageBrandPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(268, 268, 268))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addComponent(AirlineAddTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdd)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(713, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdd)))
+                .addGap(244, 244, 244))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AirlineAddTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                    .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AirlineAddTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AirlineAddTxtActionPerformed
+    private void txtAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AirlineAddTxtActionPerformed
+    }//GEN-LAST:event_txtAddActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        String s = AirlineAddTxt.getText();
-        
-        
-        
+        String s = txtAdd.getText();
         if(s.equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter a valid name!");
             return;
@@ -191,11 +153,8 @@ public class ManageBrandPanel extends javax.swing.JPanel {
         } else {
             brandList.add(s);
         }
-        
-        
         populate();
-        AirlineAddTxt.setText("");
-     
+        txtAdd.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -207,12 +166,10 @@ public class ManageBrandPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AirlineAddTxt;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBrand;
+    private javax.swing.JTextField txtAdd;
     // End of variables declaration//GEN-END:variables
 }
