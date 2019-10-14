@@ -5,6 +5,7 @@
  */
 package assignment3sample.Interface;
 
+import assignment3sample.Business.CustomerDirectory;
 import assignment3sample.Business.Flight;
 import assignment3sample.Business.Flightschedule;
 import java.awt.CardLayout;
@@ -21,11 +22,13 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    private CustomerDirectory custdir;
     private Flightschedule carInfor;
     private List<String> brandList;
     
     public MainFrame() {
         initComponents();
+        custdir = new CustomerDirectory();
         carInfor = new Flightschedule();
         brandList = new ArrayList<>(Arrays.asList("Ferrari", "BMW", "Toyota", "GM"));
     }
@@ -61,6 +64,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2.setText("Register Airlines");
 
         jButton3.setText("Manage Customer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
@@ -119,6 +127,15 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.next(rightPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        BookFlightPanel bfPanel = new BookFlightPanel(custdir, rightPanel, carInfor, brandList);
+        rightPanel.add("BookFlightPanel", bfPanel);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.next(rightPanel);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
