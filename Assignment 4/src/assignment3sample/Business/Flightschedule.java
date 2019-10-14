@@ -17,10 +17,12 @@ public class Flightschedule {
     private ArrayList<Flight> carList;
     private LocalDateTime latestDateTime;
     private DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
+    
     public String getLatestDateTime() {
         return latestDateTime.format(myFormat);
     }
+
+   
     
     public void updateDateTime() {
         latestDateTime = LocalDateTime.now();
