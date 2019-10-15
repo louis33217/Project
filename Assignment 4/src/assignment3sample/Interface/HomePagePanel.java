@@ -22,12 +22,12 @@ public class HomePagePanel extends javax.swing.JPanel {
      * Creates new form HomePagePanel
      */
     private JPanel rightPanel;
-    private Flightschedule carInfor;
+    private Flightschedule flightInfor;
     private List<String> brandList;
-    public HomePagePanel(JPanel rightPanel, Flightschedule carInfor, List<String> brandList) {
+    public HomePagePanel(JPanel rightPanel, Flightschedule flightInfor, List<String> brandList) {
         initComponents();
         this.rightPanel = rightPanel;
-        this.carInfor = carInfor;
+        this.flightInfor = flightInfor;
         this.brandList = brandList;
     }
 
@@ -42,9 +42,8 @@ public class HomePagePanel extends javax.swing.JPanel {
 
         btnFind = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
-        btnManage = new javax.swing.JButton();
 
-        btnFind.setText("Airplane schedule");
+        btnFind.setText("Flight Schedule");
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindActionPerformed(evt);
@@ -58,41 +57,31 @@ public class HomePagePanel extends javax.swing.JPanel {
             }
         });
 
-        btnManage.setText("Manage Brand");
-        btnManage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(314, 314, 314)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(388, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(335, Short.MAX_VALUE))
+                    .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(361, 361, 361))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
+                .addGap(154, 154, 154)
                 .addComponent(btnFind)
-                .addGap(49, 49, 49)
+                .addGap(109, 109, 109)
                 .addComponent(btnCreate)
-                .addGap(53, 53, 53)
-                .addComponent(btnManage)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-        SchedulePanel panel = new SchedulePanel(rightPanel, carInfor, brandList);
+        SchedulePanel panel = new SchedulePanel(rightPanel, flightInfor, brandList);
         rightPanel.add("SchedulePanel", panel);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.next(rightPanel);
@@ -100,24 +89,15 @@ public class HomePagePanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        CreateFlightPanel panel = new CreateFlightPanel(rightPanel, carInfor, brandList);
+        CreateFlightPanel panel = new CreateFlightPanel(rightPanel, flightInfor, brandList);
         rightPanel.add("CreateFlightPanel", panel);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.next(rightPanel);
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void btnManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageActionPerformed
-        // TODO add your handling code here:
-        ManageBrandPanel panel = new ManageBrandPanel(rightPanel, brandList);
-        rightPanel.add("ManageBrandPanel", panel);
-        CardLayout layout = (CardLayout) rightPanel.getLayout();
-        layout.next(rightPanel);
-    }//GEN-LAST:event_btnManageActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnFind;
-    private javax.swing.JButton btnManage;
     // End of variables declaration//GEN-END:variables
 }

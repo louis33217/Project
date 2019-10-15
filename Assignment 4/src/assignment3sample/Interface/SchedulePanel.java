@@ -26,22 +26,19 @@ public class SchedulePanel extends javax.swing.JPanel {
      * Creates new form FindCarPanel
      */
     private JPanel rightPanel;
-    private Flightschedule carInfor;
+    private Flightschedule flightInfor;
     private List<String> brandList;
-    private int avacar, notavacar;
-    public SchedulePanel(JPanel rightPanel, Flightschedule carInfor, List<String> brandList) {
+    public SchedulePanel(JPanel rightPanel, Flightschedule flightInfor, List<String> brandList) {
         this.rightPanel = rightPanel;
-        this.carInfor = carInfor;
+        this.flightInfor = flightInfor;
         this.brandList = brandList;
         initComponents();
-        populate(carInfor.getCarList());
+        populate(flightInfor.getFlightList());
     }
     
     public void populate(ArrayList<Flight> carList) {
         DefaultTableModel dtm = (DefaultTableModel)tblCarlist.getModel();
         dtm.setRowCount(0);
-        avacar = 0;
-        notavacar = 0;
         
         for(Flight a : carList){
             Object[] row = new Object[dtm.getColumnCount()];
@@ -53,19 +50,16 @@ public class SchedulePanel extends javax.swing.JPanel {
             row[5]=a.getTo();
             dtm.addRow(row);
         }
-        lbAvacar.setText(String.valueOf(avacar));
-        lbNotava.setText(String.valueOf(notavacar));
-        lbLasttime.setText(carInfor.getLatestDateTime());
+        lbLasttime.setText(flightInfor.getLatestDateTime());
     }
     
     public void cleanSearch() {
         cbBrand.setSelectedItem("All");
-        txtYear.setText("");
-        txtMin.setText("");
-        txtMax.setText("");
-        txtSerial.setText("");
-        txtModel.setText("");
-        txtCity.setText("");
+        cbDep.setSelectedItem("All");
+        cbArr.setSelectedItem("All");
+        txtSeats.setText("");
+        txtFrom.setText("");
+        txtTo.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,11 +73,6 @@ public class SchedulePanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCarlist = new javax.swing.JTable();
-        btnFind = new javax.swing.JButton();
-        lbAvacar = new javax.swing.JLabel();
-        numAva = new javax.swing.JLabel();
-        lbNotava = new javax.swing.JLabel();
-        numNotava = new javax.swing.JLabel();
         lbTime = new javax.swing.JLabel();
         lbLasttime = new javax.swing.JLabel();
         btnView = new javax.swing.JButton();
@@ -91,17 +80,15 @@ public class SchedulePanel extends javax.swing.JPanel {
         cbBrand = new javax.swing.JComboBox<>();
         btnFilter = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtYear = new javax.swing.JTextField();
+        txtSeats = new javax.swing.JTextField();
         lbMin = new javax.swing.JLabel();
-        txtMin = new javax.swing.JTextField();
         lbMax = new javax.swing.JLabel();
-        txtMax = new javax.swing.JTextField();
-        txtSerial = new javax.swing.JTextField();
-        lbSerial = new javax.swing.JLabel();
-        txtModel = new javax.swing.JTextField();
-        lbModel = new javax.swing.JLabel();
-        txtCity = new javax.swing.JTextField();
-        lbCity = new javax.swing.JLabel();
+        cbDep = new javax.swing.JComboBox<>();
+        cbArr = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        txtFrom = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtTo = new javax.swing.JTextField();
 
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +102,7 @@ public class SchedulePanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Brand", "Seats", "Departure time", "Arrive time", "From", "To"
+                "Airliners", "Seats", "Departure time", "Arrive time", "From", "To"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -136,39 +123,19 @@ public class SchedulePanel extends javax.swing.JPanel {
             tblCarlist.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        btnFind.setText("Find an available car");
-        btnFind.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindActionPerformed(evt);
-            }
-        });
-
-        lbAvacar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbAvacar.setText("10");
-        lbAvacar.setPreferredSize(new java.awt.Dimension(19, 19));
-
-        numAva.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        numAva.setText("Available car:");
-
-        lbNotava.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbNotava.setText("10");
-        lbNotava.setPreferredSize(new java.awt.Dimension(19, 19));
-
-        numNotava.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        numNotava.setText("Not available car:");
-
         lbTime.setText("Last update time:");
 
         lbLasttime.setText("00-00-0000 00:00:00");
 
-        btnView.setText("View car detail");
+        btnView.setText("View flight detail");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
 
-        lbBrand.setText("Brand:");
+        lbBrand.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbBrand.setText("Airliners:");
 
         ArrayList<String> list = new ArrayList<String>() {{add("All");}};
         list.addAll(brandList);
@@ -187,54 +154,38 @@ public class SchedulePanel extends javax.swing.JPanel {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Year:");
+        jLabel1.setText("Seats:");
 
-        txtYear.addActionListener(new java.awt.event.ActionListener() {
+        txtSeats.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtYearActionPerformed(evt);
+                txtSeatsActionPerformed(evt);
             }
         });
 
-        lbMin.setText("Min seat:");
+        lbMin.setText("From:");
 
-        txtMin.addActionListener(new java.awt.event.ActionListener() {
+        lbMax.setText("To:");
+
+        cbDep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Morning", "Day", "Evening", "Night" }));
+
+        cbArr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Morning", "Day", "Evening", "Night" }));
+
+        jLabel2.setText("Departure time:");
+
+        txtFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMinActionPerformed(evt);
+                txtFromActionPerformed(evt);
             }
         });
 
-        lbMax.setText("Max seat:");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Arrive time:");
 
-        txtMax.addActionListener(new java.awt.event.ActionListener() {
+        txtTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaxActionPerformed(evt);
+                txtToActionPerformed(evt);
             }
         });
-
-        txtSerial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSerialActionPerformed(evt);
-            }
-        });
-
-        lbSerial.setText("Serial:");
-
-        txtModel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtModelActionPerformed(evt);
-            }
-        });
-
-        lbModel.setText("Model:");
-
-        txtCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCityActionPerformed(evt);
-            }
-        });
-
-        lbCity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbCity.setText("City:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -242,106 +193,80 @@ public class SchedulePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(38, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnView)
+                        .addComponent(lbTime)
                         .addGap(18, 18, 18)
+                        .addComponent(lbLasttime))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbSerial, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSerial, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbBrand)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbMin)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(lbMax)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(numNotava, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                                    .addComponent(numAva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbAvacar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbNotava, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(387, 387, 387)
-                                        .addComponent(lbTime)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lbLasttime))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnBack)
+                                .addGap(676, 676, 676))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lbBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addComponent(lbMin))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnBack)
-                                    .addGap(525, 525, 525)
-                                    .addComponent(btnFind))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 28, Short.MAX_VALUE))))
+                                    .addComponent(cbDep, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cbArr, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lbMax)))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(59, 59, 59)
+                                            .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnView))))
+                .addGap(29, 31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnFind))
+                .addComponent(btnBack)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnView)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbBrand)
-                            .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbMin)
-                            .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbMax)
-                            .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbSerial)
-                            .addComponent(txtSerial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbModel)
-                            .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbCity)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFilter))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(lbBrand)
+                    .addComponent(jLabel1)
+                    .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numAva)
-                    .addComponent(lbAvacar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(cbDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbArr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numNotava)
-                    .addComponent(lbNotava, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMin)
+                    .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMax)
+                    .addComponent(btnFilter))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTime)
                     .addComponent(lbLasttime))
                 .addContainerGap())
@@ -355,25 +280,12 @@ public class SchedulePanel extends javax.swing.JPanel {
         layout.previous(rightPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-        // TODO add your handling code here:
-        /*Flight avaCar = carInfor.searchAvailable();
-        if (avaCar == null) {
-            JOptionPane.showMessageDialog(null, "No car is available now");
-        } else {
-            YourCarPanel panel = new YourCarPanel(rightPanel, carInfor, avaCar, brandList);
-            rightPanel.add("YourCarPanel", panel);
-            CardLayout layout = (CardLayout) rightPanel.getLayout();
-            layout.next(rightPanel);
-        }*/
-    }//GEN-LAST:event_btnFindActionPerformed
-
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
         int selectedRow = tblCarlist.getSelectedRow();
         if(selectedRow >=0) {
             Flight result = (Flight) tblCarlist.getValueAt(selectedRow, 0);
-            YourCarPanel panel = new YourCarPanel(rightPanel, carInfor, result, brandList);
+            ViewFlightPanel panel = new ViewFlightPanel(rightPanel, flightInfor, result, brandList);
             rightPanel.add("YourCarPanel", panel);
             CardLayout layout = (CardLayout) rightPanel.getLayout();
             layout.next(rightPanel);
@@ -390,131 +302,81 @@ public class SchedulePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<Flight> result = new ArrayList<>();
         String brand = cbBrand.getSelectedItem().toString();
-        String model = txtModel.getText();
-        String city = txtCity.getText();
-        int year, min, max, serial;
+        String dep = cbDep.getSelectedItem().toString();
+        String arr = cbArr.getSelectedItem().toString();
+        int seats;
+        String from = txtFrom.getText();
+        String to = txtTo.getText();
         try {
-            if (!txtYear.getText().equals("")) {
-                year = Integer.parseInt(txtYear.getText());
+            if (!txtSeats.getText().equals("")) {
+                seats = Integer.parseInt(txtSeats.getText());
             } else {
-                year = -1;
+                seats = -1;
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please type in a number for year");
+            JOptionPane.showMessageDialog(null, "Please type in a number for seats");
             return;
         }
-        try {
-            if (!txtMin.getText().equals("")) {
-                min = Integer.parseInt(txtMin.getText());
-            } else {
-                min = Integer.MIN_VALUE;
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please type in a number for min seat");
-            return;
-        }
-        try {
-            if (!txtMax.getText().equals("")) {
-                max = Integer.parseInt(txtMax.getText());
-            } else {
-                max = Integer.MAX_VALUE;
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please type in a number for max seat");
-            return;
-        }
-        if(max < min) {
-            JOptionPane.showMessageDialog(null, "Max seat must bigger than min seat");
-            return;
-        }
-        try {
-            if (!txtSerial.getText().equals("")) {
-                serial = Integer.parseInt(txtSerial.getText());
-            } else {
-                serial = -1;
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please type in a number for serial");
-            return;
-        }
-        for (Flight c : carInfor.getCarList()) {
-            /*System.out.println(brand.equals("All"));
-            System.out.println(brand.equals(c.getBrand()));*/
-            /*if (!brand.equals("All") && !brand.equals(c.getBrand())) {
+        for (Flight c : flightInfor.getFlightList()) {
+            if (!brand.equals("All") && !brand.equals(c.getAirliners())) {
                 continue;
             }
-            if (!txtYear.getText().equals("") && !(year == c.getManufactured_year())) {
+            if (!txtSeats.getText().equals("") && !(seats == c.getSeats())) {
                 continue;
             }
-            if (min > c.getMin_seats() || max < c.getMax_seats()) {
+            if (!dep.equals("All") && !dep.equals(c.getDeparute())) {
                 continue;
             }
-            if (!model.equals("") && !model.equals(c.getModel_num())) {
+            if (!arr.equals("All") && !arr.equals(c.getArrive())) {
                 continue;
             }
-            if (!city.equals("") && !city.equals(c.getAvailble_city())) {
+            if (!from.equals("") && !from.equals(c.getFrom())) {
                 continue;
-            }*/
+            }
+            if (!to.equals("") && !to.equals(c.getTo())) {
+                continue;
+            }
             result.add(c);
         }
         if(result.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No match car, please filter again", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No match flight, please filter again", "Information", JOptionPane.INFORMATION_MESSAGE);
         } else {
             populate(result);
         }
     }//GEN-LAST:event_btnFilterActionPerformed
 
-    private void txtYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtYearActionPerformed
+    private void txtSeatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeatsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtYearActionPerformed
+    }//GEN-LAST:event_txtSeatsActionPerformed
 
-    private void txtMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinActionPerformed
+    private void txtFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFromActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMinActionPerformed
+    }//GEN-LAST:event_txtFromActionPerformed
 
-    private void txtMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaxActionPerformed
+    private void txtToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaxActionPerformed
-
-    private void txtSerialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSerialActionPerformed
-
-    private void txtModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtModelActionPerformed
-
-    private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCityActionPerformed
+    }//GEN-LAST:event_txtToActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFilter;
-    private javax.swing.JButton btnFind;
     private javax.swing.JButton btnView;
+    private javax.swing.JComboBox<String> cbArr;
     private javax.swing.JComboBox<String> cbBrand;
+    private javax.swing.JComboBox<String> cbDep;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbAvacar;
     private javax.swing.JLabel lbBrand;
-    private javax.swing.JLabel lbCity;
     private javax.swing.JLabel lbLasttime;
     private javax.swing.JLabel lbMax;
     private javax.swing.JLabel lbMin;
-    private javax.swing.JLabel lbModel;
-    private javax.swing.JLabel lbNotava;
-    private javax.swing.JLabel lbSerial;
     private javax.swing.JLabel lbTime;
-    private javax.swing.JLabel numAva;
-    private javax.swing.JLabel numNotava;
     private javax.swing.JTable tblCarlist;
-    private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtMax;
-    private javax.swing.JTextField txtMin;
-    private javax.swing.JTextField txtModel;
-    private javax.swing.JTextField txtSerial;
-    private javax.swing.JTextField txtYear;
+    private javax.swing.JTextField txtFrom;
+    private javax.swing.JTextField txtSeats;
+    private javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables
 }
