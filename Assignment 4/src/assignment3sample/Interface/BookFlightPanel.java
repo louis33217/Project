@@ -25,7 +25,7 @@ public class BookFlightPanel extends javax.swing.JPanel {
         this.rightPanel = rightPanel;
         this.carInfor = carInfor;
         this.brandList = brandList;
-         populate(carInfor.getCarList());
+         populate(carInfor.getFlightList());
          
     }
 

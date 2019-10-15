@@ -285,7 +285,7 @@ public class YourCarPanel extends javax.swing.JPanel {
         Component[] comps = rightPanel.getComponents();
         for (Component comp : comps) {
             if (comp instanceof SchedulePanel) {
-                ((SchedulePanel) comp).populate(carInfor.getCarList());
+                ((SchedulePanel) comp).populate(carInfor.getFlightList());
                 ((SchedulePanel) comp).cleanSearch();
             }
         }
@@ -350,7 +350,7 @@ public class YourCarPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter a valid city");
             return;
         }
-        car.updateCar(brand, year, String.valueOf(min), String.valueOf(max), txtModel.getText(), txtCity.getText());
+        car.updateFlight(brand, year, String.valueOf(min), String.valueOf(max), txtModel.getText(), txtCity.getText());
 
         btnUpdate.setEnabled(true);
         rbAva1.setEnabled(false);

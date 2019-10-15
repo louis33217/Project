@@ -101,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcom!");
+        jLabel1.setText("Welcome!");
         rightPanel.add(jLabel1, "card2");
 
         jSplitPane1.setRightComponent(rightPanel);
