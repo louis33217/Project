@@ -74,7 +74,7 @@ public class Flight {
         this.to = to;
     }
     
-    public void updateCar(String airliners, int seats, String deparute, String arrive, String from, String to) {
+    public void updateFlight(String airliners, int seats, String deparute, String arrive, String from, String to) {
         this.airliners = airliners;
         this.seats = seats;
         this.deparute = deparute;

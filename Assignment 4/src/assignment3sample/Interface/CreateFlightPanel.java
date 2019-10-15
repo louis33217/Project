@@ -23,11 +23,11 @@ public class CreateFlightPanel extends javax.swing.JPanel {
      * Creates new form CreateCarPanel
      */
     private JPanel rightPanel;
-    private Flightschedule carInfor;
+    private Flightschedule flightInfor;
     private List<String> brandList;
-    public CreateFlightPanel(JPanel rightPanel, Flightschedule carInfor, List<String> brandList) {
+    public CreateFlightPanel(JPanel rightPanel, Flightschedule flightInfor, List<String> brandList) {
         this.rightPanel = rightPanel;
-        this.carInfor = carInfor;
+        this.flightInfor = flightInfor;
         this.brandList = brandList;
         initComponents();
     }
@@ -41,23 +41,21 @@ public class CreateFlightPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgAvailible = new javax.swing.ButtonGroup();
-        bgMaintenance = new javax.swing.ButtonGroup();
         btnBack = new javax.swing.JButton();
-        txtYear = new javax.swing.JTextField();
-        txtMin = new javax.swing.JTextField();
+        txtSeats = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
         lblHead = new javax.swing.JLabel();
-        lblAccNo = new javax.swing.JLabel();
+        lblAir = new javax.swing.JLabel();
         lblYear = new javax.swing.JLabel();
         lblMin = new javax.swing.JLabel();
         lblMax = new javax.swing.JLabel();
-        txtMax = new javax.swing.JTextField();
         lblModel = new javax.swing.JLabel();
-        txtModel = new javax.swing.JTextField();
+        txtFrom = new javax.swing.JTextField();
         lblModel1 = new javax.swing.JLabel();
-        txtCity = new javax.swing.JTextField();
-        cbBrand = new javax.swing.JComboBox<>();
+        txtTo = new javax.swing.JTextField();
+        cbAir = new javax.swing.JComboBox<>();
+        cbDep = new javax.swing.JComboBox<>();
+        cbArr = new javax.swing.JComboBox<>();
 
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +74,7 @@ public class CreateFlightPanel extends javax.swing.JPanel {
         lblHead.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblHead.setText("Create New Flight");
 
-        lblAccNo.setText("Brand");
+        lblAir.setText("Airliners");
 
         lblYear.setText("Seats");
 
@@ -88,12 +86,16 @@ public class CreateFlightPanel extends javax.swing.JPanel {
 
         lblModel1.setText("To");
 
-        cbBrand.setModel(new DefaultComboBoxModel(brandList.toArray(new String[0])));
-        cbBrand.addActionListener(new java.awt.event.ActionListener() {
+        cbAir.setModel(new DefaultComboBoxModel(brandList.toArray(new String[0])));
+        cbAir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbBrandActionPerformed(evt);
+                cbAirActionPerformed(evt);
             }
         });
+
+        cbDep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Morning", "Day", "Afternoon", "Night" }));
+
+        cbArr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Morning", "Day", "Afternoon", "Night" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,67 +104,75 @@ public class CreateFlightPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(275, 275, 275)
-                .addComponent(lblHead)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(813, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(278, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCreate)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblHead)
+                        .addGap(65, 65, 65))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAccNo)
-                            .addComponent(lblYear)
-                            .addComponent(lblMin)
-                            .addComponent(lblMax)
-                            .addComponent(lblModel)
-                            .addComponent(lblModel1))
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCity)
-                            .addComponent(txtModel)
-                            .addComponent(txtMax)
-                            .addComponent(txtYear)
-                            .addComponent(txtMin)
-                            .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(248, 248, 248))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblModel)
+                                    .addComponent(lblModel1))
+                                .addGap(124, 124, 124)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtFrom)
+                                    .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCreate)
+                                .addGap(71, 71, 71)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblAir)
+                                .addComponent(lblYear)
+                                .addComponent(lblMin)
+                                .addComponent(lblMax))
+                            .addGap(70, 70, 70)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtSeats)
+                                .addComponent(cbAir, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbDep, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbArr, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(305, 305, 305))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBack)
-                    .addComponent(lblHead))
-                .addGap(63, 63, 63)
+                .addComponent(btnBack)
+                .addGap(23, 23, 23)
+                .addComponent(lblHead)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAccNo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAir, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblYear)
-                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMin)
-                    .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMax)
-                    .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                    .addComponent(cbArr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblModel)
-                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblModel1)
-                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                    .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnCreate)
-                .addGap(28, 28, 28))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,80 +185,56 @@ public class CreateFlightPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        String ava = bgAvailible.getSelection().getActionCommand();
-        String brand = cbBrand.getSelectedItem().toString();
-        String maintain = bgMaintenance.getSelection().getActionCommand();
-        int year, min, max, serial;
+        String air = cbAir.getSelectedItem().toString();
+        String dep = cbDep.getSelectedItem().toString();
+        String arr = cbArr.getSelectedItem().toString();
+        String from = txtFrom.getText();
+        String to = txtTo.getText();
+        int seats;
         try {
-            year = Integer.parseInt(txtYear.getText());
+            seats = Integer.parseInt(txtSeats.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please type in a number for year");
+            JOptionPane.showMessageDialog(null, "Please type in a number for seats");
             return;
         }
-        if (year < 0 || year > 2019) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid year");
+        if (seats < 0) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid seats");
             return;
         }
-        try {
-            min = Integer.parseInt(txtMin.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please type in a number for min seat");
+        if (from.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid from");
             return;
         }
-        if (min < 0) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid min seat");
+        if (to.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid to");
             return;
         }
-        try {
-            max = Integer.parseInt(txtMax.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please type in a number for max seat");
-            return;
-        }
-        if (max < 0) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid max seat");
-            return;
-        }
-        if(max < min) {
-            JOptionPane.showMessageDialog(null, "Max seat must bigger than min seat");
-            return;
-        }
-        if (txtCity.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid model");
-            return;
-        }
-        if (txtCity.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid city");
-            return;
-        }
-        Flight newCar = new Flight(brand, year, String.valueOf(min), String.valueOf(max), txtModel.getText(), txtCity.getText());
-        carInfor.addProduct(newCar);
+        Flight newCar = new Flight(air, seats, dep, arr, from, to);
+        flightInfor.addProduct(newCar);
 
-        JOptionPane.showMessageDialog(null, "Car Created Successfully");
+        JOptionPane.showMessageDialog(null, "Flight Created Successfully");
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void cbBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBrandActionPerformed
+    private void cbAirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbBrandActionPerformed
+    }//GEN-LAST:event_cbAirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgAvailible;
-    private javax.swing.ButtonGroup bgMaintenance;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JComboBox<String> cbBrand;
-    private javax.swing.JLabel lblAccNo;
+    private javax.swing.JComboBox<String> cbAir;
+    private javax.swing.JComboBox<String> cbArr;
+    private javax.swing.JComboBox<String> cbDep;
+    private javax.swing.JLabel lblAir;
     private javax.swing.JLabel lblHead;
     private javax.swing.JLabel lblMax;
     private javax.swing.JLabel lblMin;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblModel1;
     private javax.swing.JLabel lblYear;
-    private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtMax;
-    private javax.swing.JTextField txtMin;
-    private javax.swing.JTextField txtModel;
-    private javax.swing.JTextField txtYear;
+    private javax.swing.JTextField txtFrom;
+    private javax.swing.JTextField txtSeats;
+    private javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables
 }
