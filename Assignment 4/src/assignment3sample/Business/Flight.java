@@ -83,6 +83,10 @@ public class Flight {
         this.to = to;
     }
     
+    public void bookFlight() {
+        this.seats--;
+    }
+    
     @Override
     public String toString(){
        return airliners;
