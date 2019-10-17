@@ -160,6 +160,9 @@
     <Component class="javax.swing.JLabel" name="lbAirliner">
     </Component>
     <Component class="javax.swing.JLabel" name="lbSeat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Your seat is shuffled"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbDepartureTime">
     </Component>

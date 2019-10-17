@@ -6,7 +6,9 @@ import assignment3sample.Business.CustomerDirectory;
 import assignment3sample.Business.Flight;
 import assignment3sample.Business.Flightschedule;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -21,6 +23,7 @@ public class CustomerFlightBooked extends javax.swing.JPanel {
     
     public CustomerFlightBooked(CustomerDirectory cust, JPanel rightPanel, Flightschedule carInfor, Flight result, List<String> brandList, String name) {
         
+        
         this.cust = cust;
         this.rightPanel = rightPanel;
         this.carInfor = carInfor;
@@ -33,13 +36,28 @@ public class CustomerFlightBooked extends javax.swing.JPanel {
     }
 
     public void populate(Flightschedule carInfor, Flight result, List<String> brandList, String name){
-    lbName.setText(name);
-    lbAirliner.setText(result.getAirliners());
-    lbArriveTime.setText(result.getArrive());
-    lbDepartureTime.setText(result.getDeparute());
-    lbDestination.setText(result.getTo());
-    lbSeat.setText(String.valueOf(result.getSeats()));
-    lbFrom.setText(result.getFrom());
+
+        if( result.getSeats() <=0 )
+            JOptionPane.showConfirmDialog(this, "no seats ");
+        else{
+        int srow = 0;
+        for (;srow > 0;)
+            srow = result.getSeats()-6;
+        if (srow==0)
+            srow = 6;
+        int scolumn = 0;
+        for (int i = 1;scolumn > 0;i++)
+            scolumn = result.getSeats()-25;
+        if(scolumn == 0)
+            scolumn = 25;
+        lbName.setText(name);
+        lbAirliner.setText(result.getAirliners());
+        lbArriveTime.setText(result.getArrive());
+        lbDepartureTime.setText(result.getDeparute());
+        lbDestination.setText(result.getTo());
+        lbSeat.setText("row: "+ srow + "  column: "+ scolumn);
+        lbFrom.setText(result.getFrom());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -82,6 +100,8 @@ public class CustomerFlightBooked extends javax.swing.JPanel {
         jLabel8.setText("Destination: ");
 
         lbName.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+
+        lbSeat.setText("Your seat is shuffled");
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -179,23 +199,33 @@ public class CustomerFlightBooked extends javax.swing.JPanel {
         rightPanel.remove(this);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.previous(rightPanel);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
+       
+       result.bookFlight();
        Customer cus = cust.addCustomer();
        cus.setName(name);
        cus.setAirliners(lbAirliner.getText());
        cus.setArrive(lbArriveTime.getText());
        cus.setDeparute(lbDepartureTime.getText());
        cus.setTo(lbDestination.getText());
-       cus.setSeats(Integer.parseInt(lbSeat.getText()));
+       cus.setSeats(result.getSeats());
        cus.setFrom(lbFrom.getText());
        
-       TicketsBooked panel = new TicketsBooked(rightPanel, cust);
-       rightPanel.add("TicketsBooked", panel);
-       CardLayout layout = (CardLayout) rightPanel.getLayout();
-       layout.next(rightPanel);
+        JOptionPane.showMessageDialog(this, "Tickets booked");
+        rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+                Component[] comps = rightPanel.getComponents();
+        for (Component comp : comps) {
+            if (comp instanceof BookFlightPanel) {
+                ((BookFlightPanel) comp).populate(carInfor.getFlightList());
+                ((BookFlightPanel) comp).cleanSearch();
+            }
+        }
+        layout.previous(rightPanel);
        
       
     }//GEN-LAST:event_jButton2ActionPerformed

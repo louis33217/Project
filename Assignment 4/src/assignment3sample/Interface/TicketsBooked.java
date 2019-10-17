@@ -26,10 +26,12 @@ public class TicketsBooked extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         for(Customer a : cust.getCustomerDirectory()){
+            int srow = Integer.valueOf(a.getSeats())%6+1;
+            int scolumn = Integer.valueOf(a.getSeats())%25+1;
             Object[] row = new Object[dtm.getColumnCount()];
             row[0]=a;
             row[1]=a.getAirliners();
-            row[2]=a.getSeats();
+            row[2]= "row: "+ srow + "  column: "+ scolumn;
             row[3]=a.getDeparute();
             row[4]=a.getArrive();
             row[5]=a.getFrom();
@@ -114,7 +116,7 @@ public class TicketsBooked extends javax.swing.JPanel {
         rightPanel.remove(this);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.previous(rightPanel);
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
