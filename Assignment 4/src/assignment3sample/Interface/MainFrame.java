@@ -45,7 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         leftPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnReg = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         rightPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,7 +61,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Register Airlines");
+        btnReg.setText("Register Airlines");
+        btnReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Manage Customer");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -88,7 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(162, 162, 162)
                 .addComponent(jButton1)
                 .addGap(58, 58, 58)
-                .addComponent(jButton2)
+                .addComponent(btnReg)
                 .addGap(71, 71, 71)
                 .addComponent(jButton3)
                 .addContainerGap(126, Short.MAX_VALUE))
@@ -137,6 +142,14 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
+        // TODO add your handling code here:
+        ManageBrandPanel mPanel = new ManageBrandPanel(rightPanel, brandList);
+        rightPanel.add("ManageBrandPanel", mPanel);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.next(rightPanel);
+    }//GEN-LAST:event_btnRegActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -173,8 +186,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReg;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSplitPane jSplitPane1;
