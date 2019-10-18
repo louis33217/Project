@@ -58,8 +58,13 @@ public class Flightschedule {
         return flightList;
     }
     
-    public void addProduct(Flight flight){
+    public void addProduct(Flight flight) {
         flightList.add(flight);
+        updateDateTime();
+    }
+    
+    public void deleteProduct(Flight flight) {
+        flightList.remove(flight);
         updateDateTime();
     }
 }
