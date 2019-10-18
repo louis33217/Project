@@ -3,6 +3,7 @@ package assignment3sample.Interface;
 
 import assignment3sample.Business.Customer;
 import assignment3sample.Business.CustomerDirectory;
+import assignment3sample.Business.Flightschedule;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -13,10 +14,12 @@ public class TicketsBooked extends javax.swing.JPanel {
 
     private JPanel rightPanel;
     private CustomerDirectory cust;
+    private Flightschedule carInfor;
     
-    public TicketsBooked(JPanel rightPanel, CustomerDirectory cust) {
+    public TicketsBooked(JPanel rightPanel, CustomerDirectory cust, Flightschedule carInfor) {
         this.cust = cust;
         this.rightPanel = rightPanel;
+        this.carInfor = carInfor;
         initComponents();
         populate();
     }
@@ -26,8 +29,9 @@ public class TicketsBooked extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         for(Customer a : cust.getCustomerDirectory()){
-            int srow = Integer.valueOf(a.getSeats())%6+1;
-            int scolumn = Integer.valueOf(a.getSeats())%25+1;
+            
+            int srow = (a.getSeats())%6+1;
+            int scolumn = (a.getSeats())%25+1;
             Object[] row = new Object[dtm.getColumnCount()];
             row[0]=a;
             row[1]=a.getAirliners();
@@ -36,6 +40,8 @@ public class TicketsBooked extends javax.swing.JPanel {
             row[4]=a.getArrive();
             row[5]=a.getFrom();
             row[6]=a.getTo();
+            if(a.getSeats() == 0)
+                break;
             
             dtm.addRow(row);
         }

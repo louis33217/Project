@@ -355,7 +355,7 @@ public class BookFlightPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-       TicketsBooked panel = new TicketsBooked(rightPanel, custdir);
+       TicketsBooked panel = new TicketsBooked(rightPanel, custdir, carInfor);
        rightPanel.add("TicketsBooked", panel);
        CardLayout layout = (CardLayout) rightPanel.getLayout();
        layout.next(rightPanel);

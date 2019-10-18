@@ -31,6 +31,7 @@ public class CustomerFlightBooked extends javax.swing.JPanel {
         this.brandList = brandList;
         this.name = name;
 
+        
         initComponents();
         populate(carInfor, result, brandList, name);
     }
@@ -40,22 +41,19 @@ public class CustomerFlightBooked extends javax.swing.JPanel {
         if( result.getSeats() <=0 )
             JOptionPane.showConfirmDialog(this, "no seats ");
         else{
-        int srow = 0;
-        for (;srow > 0;)
-            srow = result.getSeats()-6;
-        if (srow==0)
-            srow = 6;
-        int scolumn = 0;
-        for (int i = 1;scolumn > 0;i++)
-            scolumn = result.getSeats()-25;
-        if(scolumn == 0)
-            scolumn = 25;
+/////////////////////////////////////////////////////////////////////////
+////////////////count row column for seats//////////////////////////////
+        int srow = (result.getSeats()-1)%25+1;
+        int scolumn = (result.getSeats()-1)%6+1;
+//////////////6, 25 least common multiple = 25//////////////////////////
+/////////////wouldnt generate duplicate seats///////////////////////////
+////////////////count row column for seats//////////////////////////////
         lbName.setText(name);
         lbAirliner.setText(result.getAirliners());
         lbArriveTime.setText(result.getArrive());
         lbDepartureTime.setText(result.getDeparute());
         lbDestination.setText(result.getTo());
-        lbSeat.setText("row: "+ srow + "  column: "+ scolumn);
+        lbSeat.setText("row: "+ scolumn + "  column: "+ srow);
         lbFrom.setText(result.getFrom());
         }
     }
