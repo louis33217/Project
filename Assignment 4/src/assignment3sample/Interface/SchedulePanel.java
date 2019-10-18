@@ -89,6 +89,7 @@ public class SchedulePanel extends javax.swing.JPanel {
         txtFrom = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtTo = new javax.swing.JTextField();
+        btnCancel = new javax.swing.JButton();
 
         btnBack.setText("< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +188,13 @@ public class SchedulePanel extends javax.swing.JPanel {
             }
         });
 
+        btnCancel.setText("Cancel flight");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,7 +243,9 @@ public class SchedulePanel extends javax.swing.JPanel {
                                             .addGap(59, 59, 59)
                                             .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnView))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(29, 31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -257,7 +267,8 @@ public class SchedulePanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(cbDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbArr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbArr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbMin)
@@ -357,9 +368,26 @@ public class SchedulePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtToActionPerformed
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblCarlist.getSelectedRow();
+        if(selectedRow >=0) {
+            int dialogRst = JOptionPane.showConfirmDialog(null, "Would you like to cancel the flight?", "Warning", JOptionPane.YES_NO_OPTION);
+            if (dialogRst == JOptionPane.YES_OPTION) {
+                Flight result = (Flight) tblCarlist.getValueAt(selectedRow, 0);
+                flightInfor.deleteProduct(result);
+                populate(flightInfor.getFlightList());
+                cleanSearch();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from table first!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCancelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnView;
     private javax.swing.JComboBox<String> cbArr;
