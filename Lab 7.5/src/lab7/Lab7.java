@@ -90,8 +90,11 @@ public class Lab7 {
     private void runAnalysis(){
         // fine usr with most likes
         helper.userWithMostLikes();
-        
         //find 5 comments which have the most likes
         helper.getFiveMostLikedComment();
+        // find average number of likes per comment
+        helper.findAveragelikes();
+        // find top 5 inactive users based on total posts number
+        helper.topFiveInactiveBasedPosts();
     }
 }
