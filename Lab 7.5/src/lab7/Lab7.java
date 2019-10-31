@@ -94,7 +94,13 @@ public class Lab7 {
         helper.getFiveMostLikedComment();
         // find average number of likes per comment
         helper.findAveragelikes();
+        //find the post with most liked comments
+        helper.postWithMostLikedComments();
+        //find the post with most comments
+        helper.postWithMostComments();
         // find top 5 inactive users based on total posts number
         helper.topFiveInactiveBasedPosts();
+        // find top 5 inactive users based on total comments number
+        helper.topFiveInactiveBasedComments();
     }
 }
