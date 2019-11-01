@@ -86,9 +86,10 @@ public class AnalysisHelper {
         List<Integer> idListStore = new ArrayList<>(idList);
         Collections.sort(idList);
         System.out.println("\nTop 5 inactive users based on total posts number: ");
-        for (Integer i: idList) {
-            System.out.println("user id: " + idListStore.indexOf(i) + ", total post number: " + i);
-            idListStore.set(idListStore.indexOf(i), -1);
+        for (int i = 0; i < 5; i++) {
+            int j = idList.get(i);
+            System.out.println("user id: " + idListStore.indexOf(j) + ", total post number: " + j);
+            idListStore.set(idListStore.indexOf(j), -1);
         }
     }
     //find the post with most liked comments
@@ -131,9 +132,38 @@ public class AnalysisHelper {
         List<Integer> idListStore = new ArrayList<>(idList);
         Collections.sort(idList);
         System.out.println("\nTop 5 inactive users based on total comments number: ");
-        for (Integer i: idList) {
-            System.out.println("user id: " + idListStore.indexOf(i) + ", total comment number: " + i);
-            idListStore.set(idListStore.indexOf(i), -1);
+        for (int i = 0; i < 5; i++) {
+            int j = idList.get(i);
+            System.out.println("user id: " + idListStore.indexOf(j) + ", total comments number: " + j);
+            idListStore.set(idListStore.indexOf(j), -1);
+        }
+    }
+    //find top 5 inactive users overall
+    public void topFiveInactiveUsers() {
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        List<Post> postList = new ArrayList<>(posts.values());
+        List<Integer> idList = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+        for (Post p: postList) {
+            int i = idList.get(p.getUserId());
+            idList.set(p.getUserId(), ++i);
+            List<Comment> commentList = p.getComments();
+            for (Comment c: commentList) {
+                int j = idList.get(c.getUserId());
+                j = j + c.getLikes() + 1;
+                idList.set(c.getUserId(), j);
+            }
+        }
+        List<Integer> idListStore = new ArrayList<>(idList);
+        Collections.sort(idList);
+        System.out.println("\nTop 5 inactive users overall: ");
+        for (int i = 0; i < 5; i++) {
+            int j = idList.get(i);
+            System.out.println("user id: " + idListStore.indexOf(j) + ", total number: " + j);
+        }
+        System.out.println("\nTop 5 proactive users overall: ");
+        for (int i = 0; i < 5; i++) {
+            int j = idList.get(idList.size() - i - 1); 
+            System.out.println("user id: " + idListStore.indexOf(j) + ", total number: " + j);
         }
     }
 }

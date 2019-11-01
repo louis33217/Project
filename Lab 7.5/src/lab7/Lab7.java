@@ -69,7 +69,7 @@ public class Lab7 {
         if (users.containsKey(commentingUserId)) {
             users.get(commentingUserId).getComments().add(c);
         }
-        return null;
+        return c;
     }
     
     private void generatePost(String[] row, Comment comment){
@@ -102,5 +102,7 @@ public class Lab7 {
         helper.topFiveInactiveBasedPosts();
         // find top 5 inactive users based on total comments number
         helper.topFiveInactiveBasedComments();
+        //find top 5 inactive users overall
+        helper.topFiveInactiveUsers();
     }
 }
