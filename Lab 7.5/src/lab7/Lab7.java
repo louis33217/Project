@@ -69,7 +69,7 @@ public class Lab7 {
         if (users.containsKey(commentingUserId)) {
             users.get(commentingUserId).getComments().add(c);
         }
-        return null;
+        return c;
     }
     
     private void generatePost(String[] row, Comment comment){
@@ -90,8 +90,19 @@ public class Lab7 {
     private void runAnalysis(){
         // fine usr with most likes
         helper.userWithMostLikes();
-        
         //find 5 comments which have the most likes
         helper.getFiveMostLikedComment();
+        // find average number of likes per comment
+        helper.findAveragelikes();
+        //find the post with most liked comments
+        helper.postWithMostLikedComments();
+        //find the post with most comments
+        helper.postWithMostComments();
+        // find top 5 inactive users based on total posts number
+        helper.topFiveInactiveBasedPosts();
+        // find top 5 inactive users based on total comments number
+        helper.topFiveInactiveBasedComments();
+        //find top 5 inactive users overall
+        helper.topFiveInactiveUsers();
     }
 }
