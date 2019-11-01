@@ -68,7 +68,7 @@ public class AnalysisHelper {
     public void findAveragelikes() {
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
         List<Comment> commentList = new ArrayList<>(comments.values());
-        int totalLikes = 0;
+        int totalLikes = 0; //initialize data 
         for (Comment c: commentList) {
             totalLikes += c.getLikes();
         }
@@ -96,7 +96,7 @@ public class AnalysisHelper {
     public void postWithMostLikedComments() {
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
         List<Comment> commentList = new ArrayList<>(comments.values());
-        int likes = 0;
+        int likes = 0; //initialize w/ zero
         int postID = 0;
         for (Comment c: commentList) {
             if (c.getLikes() > likes) {
