@@ -45,7 +45,7 @@ public class AnalysisHelper {
                 maxId = id;
             }
         }
-        
+        // user with most likes part
         System.out.println("\nUser with most likes: " + max + "\n" + users.get(maxId));
     }
     // find 5 comments which have the most likes
@@ -104,6 +104,7 @@ public class AnalysisHelper {
                 postID = c.getPostId();
             }
         }
+        // post with most liked comments part
         System.out.println("\nPost with most liked comments: " + postID);
     }
     //find the post with most comments
