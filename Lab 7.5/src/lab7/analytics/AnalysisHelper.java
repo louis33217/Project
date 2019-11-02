@@ -20,6 +20,8 @@ import lab7.entities.User;
 /**
  *
  * @author harshalneelkamal
+ * lab7.5 is based on lab 7 skeleton
+ * 
  */
 public class AnalysisHelper {
     // find user with Most Likes
@@ -45,7 +47,7 @@ public class AnalysisHelper {
                 maxId = id;
             }
         }
-        
+        // user with most likes part
         System.out.println("\nUser with most likes: " + max + "\n" + users.get(maxId));
     }
     // find 5 comments which have the most likes
@@ -68,7 +70,7 @@ public class AnalysisHelper {
     public void findAveragelikes() {
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
         List<Comment> commentList = new ArrayList<>(comments.values());
-        int totalLikes = 0;
+        int totalLikes = 0; //initialize data 
         for (Comment c: commentList) {
             totalLikes += c.getLikes();
         }
@@ -96,7 +98,7 @@ public class AnalysisHelper {
     public void postWithMostLikedComments() {
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
         List<Comment> commentList = new ArrayList<>(comments.values());
-        int likes = 0;
+        int likes = 0; //initialize w/ zero
         int postID = 0;
         for (Comment c: commentList) {
             if (c.getLikes() > likes) {
@@ -104,6 +106,7 @@ public class AnalysisHelper {
                 postID = c.getPostId();
             }
         }
+        // post with most liked comments part
         System.out.println("\nPost with most liked comments: " + postID);
     }
     //find the post with most comments
