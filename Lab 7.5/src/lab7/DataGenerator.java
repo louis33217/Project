@@ -81,7 +81,7 @@ public class DataGenerator {
                 writer.flush();
                 writer.close();
             } catch (IOException e) {
-                System.out.println("Error while flushing/closing fileWriter !!!");
+                System.out.println("Error while flushing/closing fileWriter !!!!!!!");
                 e.printStackTrace();
             }
         }
@@ -142,7 +142,7 @@ public class DataGenerator {
                 writer.flush();
                 writer.close();
             } catch (IOException e) {
-                System.out.println("Error while flushing/closing fileWriter !!!");
+                System.out.println("Error while flushing/closing fileWriter !!!!!");
                 e.printStackTrace();
             }
         }
