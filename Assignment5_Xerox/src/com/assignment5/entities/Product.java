@@ -14,6 +14,13 @@ public class Product {
     private int minPrice;
     private int maxPrice;
     private int targetPrice;
+    
+    public Product(int id, int minPrice, int maxPrice, int targetPrice) {
+        this.id = id;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.targetPrice = targetPrice;
+    }
 
     public int getId() {
         return id;

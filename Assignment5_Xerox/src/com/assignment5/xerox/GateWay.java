@@ -9,6 +9,7 @@ import com.assignment5.analytics.AnalysisHelper;
 import com.assignment5.analytics.DataStore;
 import com.assignment5.entities.Item;
 import com.assignment5.entities.Order;
+import com.assignment5.entities.Product;
 import java.io.IOException;
 
 /**
@@ -30,9 +31,8 @@ public class GateWay {
         }
         DataReader productReader = new DataReader(generator.getProductCataloguePath());
         String[] prodRow;
-        printRow(productReader.getFileHeader());
         while((prodRow = productReader.getNextRow()) != null){
-            printRow(prodRow);
+            generateProduct(prodRow);
         }
         runAnalysis();
     }
@@ -66,7 +66,17 @@ public class GateWay {
         return item;
     }
     
+    private void generateProduct(String[] row) {
+        int productId = Integer.parseInt(row[0]);
+        int minPrice = Integer.parseInt(row[1]);
+        int maxPrice = Integer.parseInt(row[2]);
+        int targetPrice = Integer.parseInt(row[3]);
+        Product product = new Product(maxPrice, minPrice, maxPrice, targetPrice);
+        DataStore.getInstance().getProducts().put(productId, product);
+    }
+    
     private void runAnalysis() {
         helper.topThreeProducts();
+        helper.topBestCustomers();
     }
 }
