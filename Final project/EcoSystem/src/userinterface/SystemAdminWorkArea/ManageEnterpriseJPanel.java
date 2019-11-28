@@ -7,6 +7,14 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.CompanyOrganization;
+import Business.Organization.MatchingOrganization;
+import Business.Organization.Organization;
+import Business.Organization.Organization.Type;
+import Business.Organization.OrganizationDirectory;
+import Business.Organization.PatientOrganization;
+import Business.Organization.PersonalOrganization;
+import Business.Organization.RoomOrganization;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -204,9 +212,16 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         }
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-
+        OrganizationDirectory organizationDirectory = enterprise.getOrganizationDirectory();
+        if (type.getValue().equals(type.Funding.getValue())) {
+            organizationDirectory.createOrganization(new PersonalOrganization());
+            organizationDirectory.createOrganization(new CompanyOrganization());
+        } else if (type.getValue().equals(type.Coordinate.getValue())) {
+            organizationDirectory.createOrganization(new PatientOrganization());
+            organizationDirectory.createOrganization(new RoomOrganization());
+            organizationDirectory.createOrganization(new MatchingOrganization());
+        }
         populateTable();
-
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

@@ -23,16 +23,7 @@ public class OrganizationDirectory {
         return organizationList;
     }
     
-    public Organization createOrganization(Type type){
-        Organization organization = null;
-        if (type.getValue().equals(Type.Doctor.getValue())){
-            organization = new DoctorOrganization();
+    public void createOrganization(Organization organization){
             organizationList.add(organization);
-        }
-        else if (type.getValue().equals(Type.Lab.getValue())){
-            organization = new LabOrganization();
-            organizationList.add(organization);
-        }
-        return organization;
     }
 }

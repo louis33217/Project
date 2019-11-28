@@ -24,7 +24,15 @@ public abstract class Organization {
     private static int counter=0;
     
     public enum Type{
-        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization");
+        Admin("Admin Organization"),
+        Doctor("Doctor Organization"),
+        Lab("Lab Organization"),
+        Company("Company Fundings Organization"),
+        Personal("Personal Fundings Organization"),
+        Patient("Patient Organization"),
+        Room("Room Organization"),
+        Matching("Matching Organization");
+        
         private String value;
         private Type(String value) {
             this.value = value;
