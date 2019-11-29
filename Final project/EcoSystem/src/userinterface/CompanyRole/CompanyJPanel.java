@@ -10,13 +10,18 @@ import javax.swing.JPanel;
  * @author david
  */
 public class CompanyJPanel extends javax.swing.JPanel {
-
-    public CompanyJPanel() {
+    private JPanel userProcessContainer;
+    private CompanyOrganization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    
+   
+    public CompanyJPanel(JPanel userProcessContainer, UserAccount account, CompanyOrganization organization, Enterprise enterprise) {
         initComponents();
-    }
-
-    public CompanyJPanel(JPanel userProcessContainer, UserAccount account, CompanyOrganization companyOrganization, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = account;
     }
 
     @SuppressWarnings("unchecked")

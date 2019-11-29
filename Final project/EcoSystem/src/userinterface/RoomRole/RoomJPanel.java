@@ -15,16 +15,21 @@ import javax.swing.JPanel;
  * @author david
  */
 public class RoomJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private RoomOrganization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
     /**
      * Creates new form RoomJPanel
      */
-    public RoomJPanel() {
-        initComponents();
-    }
+ 
 
-    public RoomJPanel(JPanel userProcessContainer, UserAccount account, RoomOrganization roomOrganization, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public RoomJPanel(JPanel userProcessContainer, UserAccount account, RoomOrganization organization, Enterprise enterprise) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = account;
     }
 
     /**

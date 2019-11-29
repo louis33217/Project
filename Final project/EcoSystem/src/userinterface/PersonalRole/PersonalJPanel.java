@@ -15,16 +15,17 @@ import javax.swing.JPanel;
  * @author david
  */
 public class PersonalJPanel extends javax.swing.JPanel {
+    private JPanel userProcessContainer;
+    private PersonalOrganization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
 
-    /**
-     * Creates new form PersonalJPanel
-     */
-    public PersonalJPanel() {
+    public PersonalJPanel(JPanel userProcessContainer, UserAccount account, PersonalOrganization organization, Enterprise enterprise) {
         initComponents();
-    }
-
-    public PersonalJPanel(JPanel userProcessContainer, UserAccount account, PersonalOrganization personalOrganization, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = account;
     }
 
     /**

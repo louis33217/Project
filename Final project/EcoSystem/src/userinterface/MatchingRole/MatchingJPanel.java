@@ -15,16 +15,21 @@ import javax.swing.JPanel;
  * @author david
  */
 public class MatchingJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private MatchingOrganization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
     /**
      * Creates new form MatchingJPanel
      */
-    public MatchingJPanel() {
-        initComponents();
-    }
+  
 
-    public MatchingJPanel(JPanel userProcessContainer, UserAccount account, MatchingOrganization matchingOrganization, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MatchingJPanel(JPanel userProcessContainer, UserAccount account, MatchingOrganization organization, Enterprise enterprise) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = account;
     }
 
     /**

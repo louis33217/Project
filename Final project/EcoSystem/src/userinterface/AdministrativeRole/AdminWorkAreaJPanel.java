@@ -3,8 +3,11 @@
 package userinterface.AdministrativeRole;
 
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,8 +24,25 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         valueLabel.setText(enterprise.getName());
         valueType.setText(enterprise.getEnterpriseType().getValue());
+        popData();
     }
-    
+
+    public void popData() {
+
+        DefaultTableModel model = (DefaultTableModel) userJTable.getModel();
+
+        model.setRowCount(0);
+
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                Object row[] = new Object[3];
+                row[0] = organization.getName();
+                row[1] = ua.getEmployee();
+                row[2] = ua;
+                ((DefaultTableModel) userJTable.getModel()).addRow(row);
+            }
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,11 +53,12 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         userJButton = new javax.swing.JButton();
-        manageEmployeeJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
         valueType = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userJTable = new javax.swing.JTable();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -51,15 +72,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 150, -1));
-
-        manageEmployeeJButton.setText("Manage Employee");
-        manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageEmployeeJButtonActionPerformed(evt);
-            }
-        });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 150, -1));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 150, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
@@ -74,6 +87,33 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         valueType.setText("<value>");
         add(valueType, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 130, -1));
+
+        userJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Organization", "Employee", "User Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(userJTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 210));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -84,24 +124,15 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_userJButtonActionPerformed
-
-    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
-
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        
-    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton manageEmployeeJButton;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel typeLabel;
     private javax.swing.JButton userJButton;
+    private javax.swing.JTable userJTable;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JLabel valueType;
     // End of variables declaration//GEN-END:variables

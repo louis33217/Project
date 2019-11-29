@@ -135,9 +135,12 @@
             <Component class="javax.swing.JComboBox" name="typeJComboBox">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;System admin&quot;, &quot;Enterprise admin&quot; })" type="code"/>
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;System admin&quot;, &quot;Enterprise admin&quot;, &quot;Employee&quot; })" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typeJComboBoxActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

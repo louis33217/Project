@@ -7,6 +7,7 @@ package userinterface.PatientRole;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.PatientOrganization;
+
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -15,16 +16,21 @@ import javax.swing.JPanel;
  * @author david
  */
 public class PatientJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private PatientOrganization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
     /**
      * Creates new form PatientJPanel
      */
-    public PatientJPanel() {
-        initComponents();
-    }
 
-    public PatientJPanel(JPanel userProcessContainer, UserAccount account, PatientOrganization patientOrganization, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public PatientJPanel(JPanel userProcessContainer, UserAccount account, PatientOrganization organization, Enterprise enterprise) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = account;
     }
 
     /**

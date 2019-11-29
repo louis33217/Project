@@ -74,7 +74,12 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        typeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "System admin", "Enterprise admin" }));
+        typeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "System admin", "Enterprise admin", "Employee" }));
+        typeJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeJComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,6 +222,10 @@ public class MainJFrame extends javax.swing.JFrame {
         crdLyt.next(container);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
+
+    private void typeJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeJComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
