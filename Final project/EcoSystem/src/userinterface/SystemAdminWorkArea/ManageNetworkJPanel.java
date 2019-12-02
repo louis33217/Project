@@ -7,6 +7,7 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Network.Network;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -57,9 +58,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         networkJTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        submitJButton = new javax.swing.JButton();
         nameJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
+        submitJButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(204, 255, 255));
 
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,15 +96,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             networkJTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        jLabel1.setText("Name");
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel1.setText("Enter Name :");
 
-        submitJButton.setText("Submit");
-        submitJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitJButtonActionPerformed(evt);
-            }
-        });
-
+        backJButton.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,38 +107,63 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
+        submitJButton.setBackground(new java.awt.Color(255, 255, 255));
+        submitJButton.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        submitJButton.setText("Submit");
+        submitJButton.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(102, 255, 102)));
+        submitJButton.setContentAreaFilled(false);
+        submitJButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        submitJButton.setOpaque(true);
+        submitJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitJButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        jLabel2.setText("New Network Account Register");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(submitJButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backJButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backJButton)
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(41, 41, 41)
+                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(backJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel2)))
+                .addGap(57, 57, 57)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(submitJButton)
-                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(backJButton)
-                .addGap(76, 76, 76))
+                    .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(89, 89, 89))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,6 +200,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JTable networkJTable;
