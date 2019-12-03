@@ -4,12 +4,15 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +28,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
      * Creates new form ManageUserAccountJPanel
      */
     private JPanel container;
+    private EcoSystem system;
     private Enterprise enterprise;
 
     public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
@@ -56,13 +60,13 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         nameJTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        passwordJTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         backjButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         organizationJComboBox = new javax.swing.JComboBox();
         employeeJTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        passwordJTextField = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(153, 255, 153));
 
@@ -164,8 +168,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addComponent(createUserJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -173,29 +177,41 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-
-        if(employeeJTextField == null || employeeJTextField.getText().equals("")){
-            JOptionPane.showMessageDialog(null , "employee text field empty");
-        }else if (nameJTextField == null || nameJTextField.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "username text filed empty");
-        }else if (passwordJTextField == null || passwordJTextField.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "password empty");
-        }else{
-            String employee = employeeJTextField.getText();
-            String userName = nameJTextField.getText();
-            String password = passwordJTextField.getText();
-            Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-            Employee e = organization.getEmployeeDirectory().createEmployee(employee);
-            Role role = organization.getSupportedRole().get(0);
-        
-            organization.getUserAccountDirectory().createUserAccount(userName, password, e, role);
-        
-            container.remove(this);
-            CardLayout layout = (CardLayout) container.getLayout();
-            layout.next(container);
-            //layout.previous(container);
+        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        String employee = employeeJTextField.getText();
+        String username = nameJTextField.getText();
+        String password = String.valueOf(passwordJTextField.getPassword());
+        if(employee == null || employee.equals("")) {
+            JOptionPane.showMessageDialog(null , "Employee can't be empty!");
+            return;
         }
-        
+        if (username == null || username.equals("")) {
+            JOptionPane.showMessageDialog(null, "Username can't be empty!");
+            return;
+        }
+        if (password == null || password.equals("")){
+            JOptionPane.showMessageDialog(null, "Password can't be empty!");
+            return;
+        }
+
+        if (!organization.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            JOptionPane.showMessageDialog(null, "Username already exists!");
+            return;
+        }
+        Employee e = organization.getEmployeeDirectory().createEmployee(employee);
+        Role role = organization.getSupportedRole().get(0);
+
+        organization.getUserAccountDirectory().createUserAccount(username, password, e, role);
+
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        Component[] comps = container.getComponents();
+        for (Component comp : comps) {
+            if (comp instanceof AdminWorkAreaJPanel) {
+                ((AdminWorkAreaJPanel) comp).popData();
+            }
+        }
+        layout.previous(container);
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
@@ -220,6 +236,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationJComboBox;
-    private javax.swing.JTextField passwordJTextField;
+    private javax.swing.JPasswordField passwordJTextField;
     // End of variables declaration//GEN-END:variables
 }

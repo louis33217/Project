@@ -291,13 +291,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 //            return;
 //        }
         
-        for(Network network:system.getNetworkList()){
-            for(Enterprise e:network.getEnterpriseDirectory().getEnterpriseList()){
-                if(!e.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
-                    JOptionPane.showMessageDialog(null, "Username already exists!");
-                    return;
-                }
-            }
+        if(!enterprise.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            JOptionPane.showMessageDialog(null, "Username already exists!");
+            return;
         }
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
         
