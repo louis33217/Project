@@ -193,6 +193,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             container.remove(this);
             CardLayout layout = (CardLayout) container.getLayout();
             layout.next(container);
+            
+            JOptionPane.showMessageDialog(null, "Welcome aboard "+ nameJTextField.getText() + " !!! \n  You won a Iphone11 MAX PRO S super edition, \n You are the 100000th user to register successfully");
             //layout.previous(container);
         }
         

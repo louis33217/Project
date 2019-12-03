@@ -303,7 +303,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
         populateTable();
-        
+        JOptionPane.showMessageDialog(null, "New " +enterprise.getName()+ " admin account registered");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
