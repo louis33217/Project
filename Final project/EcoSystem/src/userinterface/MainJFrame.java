@@ -29,6 +29,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private CardLayout layout;
     private EcoSystem system;
     private Network network;
+    private Network clientNetwork;
     private Enterprise enterprise;
     private Organization organization;
     private int type = 0;
@@ -38,6 +39,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1000, 650);
+        clientNetwork = system.getClientNetwork();
         populateTree();
         layout=(CardLayout)container.getLayout();
     }
@@ -48,9 +50,6 @@ public class MainJFrame extends javax.swing.JFrame {
         ArrayList<Enterprise> enterpriseList;
         ArrayList<Organization> organizationList;
         
-//        Network network;
-//        Enterprise enterprise;
-        
         DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
         root.removeAllChildren();
         
@@ -58,10 +57,15 @@ public class MainJFrame extends javax.swing.JFrame {
         DefaultMutableTreeNode enterpriseNode;
         DefaultMutableTreeNode organizationNode;
         
+        root.insert(new DefaultMutableTreeNode(clientNetwork), 0);
         for(int i=0;i<networkList.size();i++){
             network=networkList.get(i);
             networkNode=new DefaultMutableTreeNode(network);
-            root.insert(networkNode, i);
+            root.insert(networkNode, i+1);
+            
+            if (network.equals(clientNetwork)) {
+                continue;
+            }
             
             enterpriseList=network.getEnterpriseDirectory().getEnterpriseList();
             for(int j=0; j<enterpriseList.size();j++){
@@ -99,6 +103,7 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         networkTree = new javax.swing.JTree(new DefaultMutableTreeNode("Networks"));
+        registerButton = new javax.swing.JButton();
         container = new javax.swing.JPanel();
         defaultjPanel = new javax.swing.JPanel();
         welcomeLable = new javax.swing.JLabel();
@@ -153,34 +158,44 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(networkTree);
 
+        registerButton.setText("New Client Register");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loginJLabel)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(logoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(registerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(loginJLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(registerButton))
+                    .addComponent(loginJLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(userNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,7 +216,7 @@ public class MainJFrame extends javax.swing.JFrame {
         container.setMaximumSize(new java.awt.Dimension(650, 650));
         container.setLayout(new java.awt.CardLayout());
 
-        welcomeLable.setText("Welcome");
+        welcomeLable.setText("Welcome System Admin");
 
         javax.swing.GroupLayout defaultjPanelLayout = new javax.swing.GroupLayout(defaultjPanel);
         defaultjPanel.setLayout(defaultjPanelLayout);
@@ -245,6 +260,10 @@ public class MainJFrame extends javax.swing.JFrame {
             userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
             inEnterprise = enterprise;
             inOrganization = organization;
+        } else if (type == 3) {
+            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+            inEnterprise = enterprise;
+            inOrganization = organization;
         } else {
             userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
         }
@@ -259,16 +278,12 @@ public class MainJFrame extends javax.swing.JFrame {
 //            for(Network network:system.getNetworkList()){
 //                //Step 2.a: check against each enterprise
 //                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
-//                    if (selectedType == 1) {
 //                        userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-//                    }
 //
 //                    if(userAccount==null){
 //                       //Step 3:check against each organization for each enterprise
 //                       for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-//                           if (selectedType == 2) {
-//                                userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
-//                           }
+//                                userAccount=organization.getUserAccountDirectory().authenticateUser("rrr", "rrr");
 //                           if(userAccount!=null){
 //                               inEnterprise=enterprise;
 //                               inOrganization=organization;
@@ -295,7 +310,7 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
         }
         else{
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system, network));
             layout.next(container);
         }
         
@@ -333,14 +348,22 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         Object o = selectedNode.getUserObject();
         String welcome = "Welcome ";
-        if (o instanceof Enterprise) {
+        if (o.equals(clientNetwork)) {
+            network = clientNetwork;
+            enterprise = network.getEnterpriseDirectory().getEnterpriseList().get(0);
+            organization = enterprise.getOrganizationDirectory().getOrganizationList().get(0);
+            welcome += "Client";
+            type = 3;
+        } else if (o instanceof Enterprise) {
             enterprise = (Enterprise) o;
             welcome += "Enterprise Admin";
             type = 1;
         } else if (o instanceof Organization) {
             organization = (Organization) o;
-            DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode)selectedNode.getParent();
-            enterprise = (Enterprise) parentNode.getUserObject();
+            DefaultMutableTreeNode organizationParent = (DefaultMutableTreeNode)selectedNode.getParent();
+            enterprise = (Enterprise) organizationParent.getUserObject();
+            DefaultMutableTreeNode enterpriseParent = (DefaultMutableTreeNode)organizationParent.getParent();
+            network = (Network) enterpriseParent.getUserObject();
             welcome += "Enterprise Employee";
             type = 2;
         } else {
@@ -349,6 +372,12 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         welcomeLable.setText(welcome);
     }//GEN-LAST:event_networkTreeValueChanged
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        CardLayout layout = (CardLayout) container.getLayout();
+        container.add("NewClientJPanel", new NewClientJPanel(container, clientNetwork));
+        layout.next(container);
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,6 +426,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton logoutJButton;
     private javax.swing.JTree networkTree;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton registerButton;
     private javax.swing.JTextField userNameJTextField;
     private javax.swing.JLabel welcomeLable;
     // End of variables declaration//GEN-END:variables

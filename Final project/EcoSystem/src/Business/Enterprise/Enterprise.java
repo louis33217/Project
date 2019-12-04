@@ -22,7 +22,7 @@ public abstract class Enterprise extends Organization{
     }
     
     public enum EnterpriseType{
-        Funding("Funding"),Coordinate("Coordinate");
+        Funding("Funding"),Coordinate("Coordinate"),Client("Client");
         
         private String value;
         

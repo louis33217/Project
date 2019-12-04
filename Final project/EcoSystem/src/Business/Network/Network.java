@@ -6,6 +6,7 @@
 package Business.Network;
 
 import Business.Enterprise.EnterpriseDirectory;
+import Business.WorkQueue.WorkQueue;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Network {
     private EnterpriseDirectory enterpriseDirectory;
     
     public Network(){
-        enterpriseDirectory=new EnterpriseDirectory();
+        enterpriseDirectory = new EnterpriseDirectory();
     }
     public String getName() {
         return name;

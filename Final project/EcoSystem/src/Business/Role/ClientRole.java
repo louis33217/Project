@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Business.Role;
@@ -7,20 +8,22 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.ClientOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 import javax.swing.JPanel;
+import userinterface.ClientRole.ClientJPanel;
 
 /**
  *
- * @author raunak
+ * @author user
  */
-public class SystemAdminRole extends Role{
+public class ClientRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, Network network) {
-        return new SystemAdminWorkAreaJPanel(userProcessContainer, system);
+        return new ClientJPanel(userProcessContainer, account, (ClientOrganization)organization, enterprise);
     }
+    
     
 }

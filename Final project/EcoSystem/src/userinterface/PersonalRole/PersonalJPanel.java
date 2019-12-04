@@ -6,9 +6,13 @@
 package userinterface.PersonalRole;
 
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.PersonalOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,13 +23,29 @@ public class PersonalJPanel extends javax.swing.JPanel {
     private PersonalOrganization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
+    private Network network;
 
-    public PersonalJPanel(JPanel userProcessContainer, UserAccount account, PersonalOrganization organization, Enterprise enterprise) {
+    public PersonalJPanel(JPanel userProcessContainer, UserAccount account, PersonalOrganization organization, Enterprise enterprise, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = account;
+        this.network = network;
+        populateRequestTable();
+    }
+    
+    public void populateRequestTable(){
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[2];
+            row[0] = request.getMessage();
+            row[1] = request;
+            
+            model.addRow(row);
+        }
     }
 
     /**
@@ -37,30 +57,79 @@ public class PersonalJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        workRequestJTable = new javax.swing.JTable();
+        provideButton = new javax.swing.JButton();
 
-        jLabel1.setText("personalJPanel");
+        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Message", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(workRequestJTable);
+
+        provideButton.setText("Provide housing");
+        provideButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provideButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(jLabel1)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGap(171, 171, 171)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(provideButton)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jLabel1)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(133, 133, 133)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(provideButton)
+                .addGap(74, 74, 74))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void provideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provideButtonActionPerformed
+        // TODO add your handling code here:
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("provideHousingJPanel", new provideHousingJPanel(userProcessContainer, userAccount, network));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_provideButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton provideButton;
+    private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,7 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.MatchingOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -15,7 +16,7 @@ import userinterface.MatchingRole.MatchingJPanel;
 public class MatchingRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, Network network) {
         return new MatchingJPanel(userProcessContainer, account, (MatchingOrganization)organization, enterprise);
     }
     

@@ -31,7 +31,8 @@ public abstract class Organization {
         Personal("Personal Fundings Organization"),
         Patient("Patient Organization"),
         Room("Room Organization"),
-        Matching("Matching Organization");
+        Matching("Matching Organization"),
+        Client("Client Organization");
         
         private String value;
         private Type(String value) {

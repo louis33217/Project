@@ -67,6 +67,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+            if (type.getValue().equals("Client")) {
+                continue;
+            }
             enterpriseTypeJComboBox.addItem(type);
         }
 
