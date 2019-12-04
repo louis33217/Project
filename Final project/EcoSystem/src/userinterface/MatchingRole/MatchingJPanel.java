@@ -62,6 +62,9 @@ public class MatchingJPanel extends javax.swing.JPanel {
         houseRequestJTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         patientRequestJTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(153, 255, 153));
 
         houseRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,6 +92,7 @@ public class MatchingJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        houseRequestJTable.setPreferredSize(new java.awt.Dimension(150, 65));
         houseRequestJTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(houseRequestJTable);
 
@@ -118,34 +122,48 @@ public class MatchingJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        patientRequestJTable.setMaximumSize(new java.awt.Dimension(2147483647, 65));
+        patientRequestJTable.setMinimumSize(new java.awt.Dimension(30, 65));
+        patientRequestJTable.setPreferredSize(new java.awt.Dimension(150, 65));
         patientRequestJTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(patientRequestJTable);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        jLabel1.setText("Room Match Status");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(204, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(537, 537, 537)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(285, 285, 285)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(62, 62, 62)
+                .addComponent(jLabel1)
+                .addGap(68, 68, 68)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(163, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable houseRequestJTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientRequestJTable;

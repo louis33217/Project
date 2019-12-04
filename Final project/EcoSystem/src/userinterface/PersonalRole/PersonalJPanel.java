@@ -60,6 +60,10 @@ public class PersonalJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         provideButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(204, 255, 255));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,34 +91,61 @@ public class PersonalJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        workRequestJTable.setMaximumSize(new java.awt.Dimension(2147483647, 65));
+        workRequestJTable.setMinimumSize(new java.awt.Dimension(30, 65));
+        workRequestJTable.setPreferredSize(new java.awt.Dimension(150, 65));
         jScrollPane1.setViewportView(workRequestJTable);
 
+        provideButton.setBackground(new java.awt.Color(255, 255, 255));
+        provideButton.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         provideButton.setText("Provide housing");
+        provideButton.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(102, 255, 102)));
+        provideButton.setContentAreaFilled(false);
+        provideButton.setOpaque(true);
         provideButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 provideButtonActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setText("Need a place to stay?");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        jLabel2.setText("Have a look below");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(provideButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(526, 526, 526)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(553, 553, 553)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(291, 291, 291)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(576, 576, 576)
+                        .addComponent(provideButton)))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
+                .addComponent(jLabel1)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel2)
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
                 .addComponent(provideButton)
-                .addGap(74, 74, 74))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -128,6 +159,8 @@ public class PersonalJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton provideButton;
     private javax.swing.JTable workRequestJTable;

@@ -66,6 +66,9 @@ public class RoomJPanel extends javax.swing.JPanel {
         approveButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         doneJTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(153, 255, 153));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,7 +98,11 @@ public class RoomJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        approveButton.setBackground(new java.awt.Color(255, 255, 255));
+        approveButton.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         approveButton.setText("Approve");
+        approveButton.setContentAreaFilled(false);
+        approveButton.setOpaque(true);
         approveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 approveButtonActionPerformed(evt);
@@ -131,28 +138,38 @@ public class RoomJPanel extends javax.swing.JPanel {
         doneJTable.setEnabled(false);
         jScrollPane2.setViewportView(doneJTable);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        jLabel1.setText("Room provider approval");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(approveButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(271, 271, 271)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(approveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(507, 507, 507)
+                        .addComponent(jLabel1)))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(61, 61, 61)
+                .addComponent(jLabel1)
+                .addGap(70, 70, 70)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(approveButton)
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,6 +185,7 @@ public class RoomJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton approveButton;
     private javax.swing.JTable doneJTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable workRequestJTable;

@@ -38,7 +38,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        this.setSize(1000, 650);
+        this.setSize(1550, 800);
         clientNetwork = system.getClientNetwork();
         populateTree();
         layout=(CardLayout)container.getLayout();
@@ -111,17 +111,20 @@ public class MainJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TeamName final project application demo ");
         setIconImages(null);
-        setLocation(new java.awt.Point(200, 200));
+        setLocation(new java.awt.Point(300, 150));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 500));
         setType(java.awt.Window.Type.UTILITY);
 
+        jSplitPane1.setDividerLocation(190);
+        jSplitPane1.setDividerSize(3);
         jSplitPane1.setMaximumSize(new java.awt.Dimension(800, 500));
-        jSplitPane1.setPreferredSize(new java.awt.Dimension(200, 500));
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(200, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(300, 500));
-        jPanel1.setPreferredSize(new java.awt.Dimension(200, 500));
+        jPanel1.setMaximumSize(new java.awt.Dimension(200, 800));
+        jPanel1.setMinimumSize(new java.awt.Dimension(200, 800));
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 800));
 
         loginJButton.setBackground(new java.awt.Color(204, 255, 204));
         loginJButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -137,9 +140,11 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("User Name");
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel1.setText("User Name :");
 
-        jLabel2.setText("Password");
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel2.setText("Password :");
 
         logoutJButton.setBackground(new java.awt.Color(255, 102, 102));
         logoutJButton.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
@@ -158,7 +163,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(networkTree);
 
-        registerButton.setText("New Client Register");
+        registerButton.setText("Sign Up");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerButtonActionPerformed(evt);
@@ -171,43 +176,40 @@ public class MainJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(loginJLabel)
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(loginJLabel)
                     .addComponent(jLabel1)
-                    .addComponent(logoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(registerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(userNameJTextField)
+                    .addComponent(passwordField)
+                    .addComponent(registerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(logoutJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(registerButton))
-                    .addComponent(loginJLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(loginJLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userNameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addComponent(registerButton)
+                .addGap(18, 18, 18)
                 .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(logoutJButton)
-                .addGap(39, 39, 39))
+                .addContainerGap())
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -215,6 +217,10 @@ public class MainJFrame extends javax.swing.JFrame {
         container.setBackground(new java.awt.Color(153, 153, 153));
         container.setMaximumSize(new java.awt.Dimension(650, 650));
         container.setLayout(new java.awt.CardLayout());
+
+        defaultjPanel.setMaximumSize(new java.awt.Dimension(1300, 800));
+        defaultjPanel.setMinimumSize(new java.awt.Dimension(1300, 800));
+        defaultjPanel.setPreferredSize(new java.awt.Dimension(1300, 800));
 
         welcomeLable.setText("Welcome System Admin");
 
@@ -225,14 +231,14 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(defaultjPanelLayout.createSequentialGroup()
                 .addGap(253, 253, 253)
                 .addComponent(welcomeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         defaultjPanelLayout.setVerticalGroup(
             defaultjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(defaultjPanelLayout.createSequentialGroup()
                 .addGap(259, 259, 259)
                 .addComponent(welcomeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(421, Short.MAX_VALUE))
         );
 
         container.add(defaultjPanel, "card2");

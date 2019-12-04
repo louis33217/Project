@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="99" green="ff" red="99" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,24 +21,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" min="-2" pref="346" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="346" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="537" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane2" pref="718" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="204" max="32767" attributes="0"/>
+              <EmptySpace pref="297" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="135" max="-2" attributes="0"/>
-              <EmptySpace pref="79" max="32767" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="135" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="200" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
+              <EmptySpace pref="163" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,6 +68,9 @@
                 <Column editable="false" title="Message" type="java.lang.String"/>
                 <Column editable="false" title="Status" type="java.lang.String"/>
               </Table>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[150, 65]"/>
             </Property>
             <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
               <JTableSelectionModel selectionMode="0"/>
@@ -79,6 +97,15 @@
                 <Column editable="false" title="Status" type="java.lang.String"/>
               </Table>
             </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[2147483647, 65]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[30, 65]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[150, 65]"/>
+            </Property>
             <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
               <JTableSelectionModel selectionMode="0"/>
             </Property>
@@ -89,5 +116,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="22" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Room Match Status"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

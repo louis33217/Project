@@ -59,6 +59,8 @@ public class provideHousingJPanel extends javax.swing.JPanel {
         enterpriseJComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         jLabel1.setText("Message");
 
         backJButton.setText("<<Back");
@@ -68,7 +70,12 @@ public class provideHousingJPanel extends javax.swing.JPanel {
             }
         });
 
+        addJButton.setBackground(new java.awt.Color(255, 255, 255));
+        addJButton.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         addJButton.setText("Add");
+        addJButton.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(51, 255, 51)));
+        addJButton.setContentAreaFilled(false);
+        addJButton.setOpaque(true);
         addJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addJButtonActionPerformed(evt);
@@ -94,33 +101,36 @@ public class provideHousingJPanel extends javax.swing.JPanel {
                         .addGap(35, 35, 35)
                         .addComponent(backJButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
+                        .addGap(411, 411, 411)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(enterpriseJComboBox, 0, 100, Short.MAX_VALUE)
-                            .addComponent(messageTextField))
-                        .addGap(18, 18, 18)
-                        .addComponent(addJButton)))
-                .addContainerGap(351, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(612, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(486, 486, 486))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(backJButton)
-                .addGap(24, 24, 24)
+                .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addJButton))
-                .addContainerGap(301, Short.MAX_VALUE))
+                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(439, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

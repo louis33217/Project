@@ -51,16 +51,16 @@ public class PatientJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(174, 174, 174)
+                .addGap(609, 609, 609)
                 .addComponent(jLabel1)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(618, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(383, 383, 383)
                 .addComponent(jLabel1)
-                .addGap(130, 130, 130))
+                .addContainerGap(398, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
