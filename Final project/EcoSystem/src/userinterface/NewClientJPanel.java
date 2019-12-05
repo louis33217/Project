@@ -10,6 +10,8 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.ClientOrganization;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ClientRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -145,14 +147,20 @@ public class NewClientJPanel extends javax.swing.JPanel {
             //            return;
             //        }
 
-        if(!enterprise.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+        if(!organization.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
             JOptionPane.showMessageDialog(null, "Username already exists!");
             return;
         }
         Employee employee = organization.getEmployeeDirectory().createEmployee(name);
         Role role = organization.getSupportedRole().get(0);
 
-        organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
+        UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
+        ClientRequest request = new ClientRequest();
+        request.setMessage("New Client");
+        request.setStatus("None");
+        request.setSender(userAccount);
+        userAccount.getWorkQueue().getWorkRequestList().add(request);
+        
         container.remove(this);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);

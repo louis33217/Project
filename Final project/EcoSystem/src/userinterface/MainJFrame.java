@@ -63,10 +63,6 @@ public class MainJFrame extends javax.swing.JFrame {
             networkNode=new DefaultMutableTreeNode(network);
             root.insert(networkNode, i+1);
             
-            if (network.equals(clientNetwork)) {
-                continue;
-            }
-            
             enterpriseList=network.getEnterpriseDirectory().getEnterpriseList();
             for(int j=0; j<enterpriseList.size();j++){
                 enterprise=enterpriseList.get(j);

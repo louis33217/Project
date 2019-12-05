@@ -17,7 +17,7 @@ public class CompanyRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, Network network) {
-        return new CompanyJPanel(userProcessContainer, account, (CompanyOrganization)organization, enterprise);
+        return new CompanyJPanel(userProcessContainer, account, (CompanyOrganization)organization, enterprise, network);
     }
     
 }

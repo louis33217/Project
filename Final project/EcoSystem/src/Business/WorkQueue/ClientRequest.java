@@ -9,14 +9,14 @@ package Business.WorkQueue;
  *
  * @author user
  */
-public class HouseRequest extends WorkRequest{
-    private String patient;
+public class ClientRequest extends WorkRequest{
+    private String host;
 
-    public String getPatient() {
-        return patient;
+    public String getHost() {
+        return host;
     }
 
-    public void setPatient(String patient) {
-        this.patient = patient;
+    public void setHost(String host) {
+        this.host = host;
     }
 }

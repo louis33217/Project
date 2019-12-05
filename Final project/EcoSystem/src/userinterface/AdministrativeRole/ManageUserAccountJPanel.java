@@ -9,8 +9,10 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.PersonalRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HouseRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -201,7 +203,14 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         Employee e = organization.getEmployeeDirectory().createEmployee(employee);
         Role role = organization.getSupportedRole().get(0);
 
-        organization.getUserAccountDirectory().createUserAccount(username, password, e, role);
+        UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, e, role);
+        if (role instanceof PersonalRole) {
+            HouseRequest request = new HouseRequest();
+            request.setMessage("New Personal");
+            request.setStatus("None");
+            request.setSender(userAccount);
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
+        }
 
         container.remove(this);
         CardLayout layout = (CardLayout) container.getLayout();
