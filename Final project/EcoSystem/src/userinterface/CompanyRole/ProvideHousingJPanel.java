@@ -151,7 +151,7 @@ public class ProvideHousingJPanel extends javax.swing.JPanel {
         }
         HouseRequest request = new HouseRequest();
         request.setMessage(message);
-        request.setStatus("Apply");
+        request.setStatus("Under review");
         request.setSender(userAccount);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
         
