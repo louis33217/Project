@@ -45,9 +45,10 @@ public class MatchingJPanel extends javax.swing.JPanel {
             if (!request.getStatus().equals("Approve")) {
                 continue;
             }
-            Object[] row = new Object[2];
+            Object[] row = new Object[3];
             row[0] = request.getMessage();
             row[1] = request;
+            row[2] = request.getSender().getUsername();
             houseModel.addRow(row);
         }
         
@@ -56,9 +57,10 @@ public class MatchingJPanel extends javax.swing.JPanel {
             if (!request.getStatus().equals("Approve")) {
                 continue;
             }
-            Object[] row = new Object[2];
+            Object[] row = new Object[3];
             row[0] = request.getMessage();
             row[1] = request;
+            row[2] = request.getSender().getUsername();
             clientModel.addRow(row);
         }
     }
@@ -82,20 +84,20 @@ public class MatchingJPanel extends javax.swing.JPanel {
 
         houseRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Message", "Status"
+                "Message", "Status", "Provider"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -112,20 +114,20 @@ public class MatchingJPanel extends javax.swing.JPanel {
 
         clientRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Message", "Status"
+                "Message", "Status", "Sender"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

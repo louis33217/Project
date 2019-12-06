@@ -6,6 +6,7 @@ import Business.Network.Network;
 import Business.Organization.PersonalOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HouseRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -209,12 +210,16 @@ public class PersonalJPanel extends javax.swing.JPanel {
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
         // TODO add your handling code here:
+        CoordinateEnterprise enterprise = (CoordinateEnterprise) enterpriseJComboBox.getSelectedItem();
+        if (enterprise == null) {
+            JOptionPane.showMessageDialog(null, "Please create a coordinate enterprise");
+            return;
+        }
         String message = applyTextField.getText();
         request.setMessage(message);
         request.setStatus("Apply");
         applyTextField.setText("");
         populateMessage(request);
-        CoordinateEnterprise enterprise = (CoordinateEnterprise) enterpriseJComboBox.getSelectedItem();
         enterprise.getWorkQueue().getWorkRequestList().add(request);
     }//GEN-LAST:event_applyButtonActionPerformed
 

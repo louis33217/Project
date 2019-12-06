@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HouseRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -143,13 +144,17 @@ public class ProvideHousingJPanel extends javax.swing.JPanel {
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
         String message = messageTextField.getText();
 
+        CoordinateEnterprise enterprise = (CoordinateEnterprise) enterpriseJComboBox.getSelectedItem();
+        if (enterprise == null) {
+            JOptionPane.showMessageDialog(null, "Please create a coordinate enterprise");
+            return;
+        }
         HouseRequest request = new HouseRequest();
         request.setMessage(message);
         request.setStatus("Apply");
         request.setSender(userAccount);
         userAccount.getWorkQueue().getWorkRequestList().add(request);
         
-        CoordinateEnterprise enterprise = (CoordinateEnterprise) enterpriseJComboBox.getSelectedItem();
         enterprise.getWorkQueue().getWorkRequestList().add(request);
 
         userProcessContainer.remove(this);

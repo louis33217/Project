@@ -43,9 +43,10 @@ public class RoomJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         doneModel.setRowCount(0);
         for (WorkRequest request : enterprise.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[2];
+            Object[] row = new Object[3];
             row[0] = request.getMessage();
             row[1] = request;
+            row[2] = request.getSender().getUsername();
             if (request.getStatus().equals("Apply")) {
                 model.addRow(row);
             } else {
@@ -73,20 +74,20 @@ public class RoomJPanel extends javax.swing.JPanel {
 
         houseRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Message", "Status"
+                "Message", "Status", "Provider"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,20 +114,20 @@ public class RoomJPanel extends javax.swing.JPanel {
 
         doneJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Message", "Status"
+                "Message", "Status", "Provider"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
