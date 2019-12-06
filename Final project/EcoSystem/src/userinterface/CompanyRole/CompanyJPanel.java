@@ -68,13 +68,10 @@ public class CompanyJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Message", "Status", "Helpee"
+                "Message", "Status", "Helper"
             }
         ) {
             Class[] types = new Class [] {
@@ -92,9 +89,6 @@ public class CompanyJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        workRequestJTable.setMaximumSize(new java.awt.Dimension(2147483647, 65));
-        workRequestJTable.setMinimumSize(new java.awt.Dimension(30, 65));
-        workRequestJTable.setPreferredSize(new java.awt.Dimension(150, 65));
         jScrollPane1.setViewportView(workRequestJTable);
 
         provideButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -110,10 +104,10 @@ public class CompanyJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("Need a place to stay?");
+        jLabel1.setText("Company housing provide");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
-        jLabel2.setText("Have a look below");
+        jLabel2.setText("Rooms service online");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,31 +116,31 @@ public class CompanyJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(526, 526, 526)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(553, 553, 553)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(291, 291, 291)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(576, 576, 576)
-                        .addComponent(provideButton)))
+                        .addComponent(provideButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(486, 486, 486)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(527, 527, 527)
+                        .addComponent(jLabel2)))
                 .addContainerGap(291, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2)
                 .addGap(60, 60, 60)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel2)
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(provideButton)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
