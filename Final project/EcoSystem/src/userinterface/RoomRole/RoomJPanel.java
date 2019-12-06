@@ -47,7 +47,7 @@ public class RoomJPanel extends javax.swing.JPanel {
             row[0] = request.getMessage();
             row[1] = request;
             row[2] = request.getSender().getUsername();
-            if (request.getStatus().equals("Apply")) {
+            if (request.getStatus().equals("Under review")) {
                 model.addRow(row);
             } else {
                 doneModel.addRow(row);
@@ -154,8 +154,10 @@ public class RoomJPanel extends javax.swing.JPanel {
                         .addGap(271, 271, 271)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(approveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(approveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(507, 507, 507)
                         .addComponent(jLabel1)))
@@ -179,7 +181,7 @@ public class RoomJPanel extends javax.swing.JPanel {
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
         for (int i : houseRequestJTable.getSelectedRows()) {
             HouseRequest request = (HouseRequest) houseRequestJTable.getValueAt(i, 1);
-            request.setStatus("Approve");
+            request.setStatus("Approved");
         }
         populateTable();
     }//GEN-LAST:event_approveButtonActionPerformed

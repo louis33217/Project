@@ -77,7 +77,7 @@ public class NewClientJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
-        jLabel1.setText("NEW USER ACCOUNT SIGN UP");
+        jLabel1.setText("NEW CLIENT ACCOUNT SIGN UP");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,7 +100,7 @@ public class NewClientJPanel extends javax.swing.JPanel {
                                 .addComponent(nameJTextField)
                                 .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jLabel1)))
-                .addContainerGap(494, Short.MAX_VALUE))
+                .addContainerGap(476, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

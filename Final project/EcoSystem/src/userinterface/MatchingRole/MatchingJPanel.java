@@ -42,7 +42,7 @@ public class MatchingJPanel extends javax.swing.JPanel {
         
         houseModel.setRowCount(0);
         for (WorkRequest request : enterprise.getWorkQueue().getWorkRequestList()){
-            if (!request.getStatus().equals("Approve")) {
+            if (!request.getStatus().equals("Approved")) {
                 continue;
             }
             Object[] row = new Object[3];
@@ -54,7 +54,7 @@ public class MatchingJPanel extends javax.swing.JPanel {
         
         clientModel.setRowCount(0);
         for (WorkRequest request : enterprise.getPatientQueue().getWorkRequestList()){
-            if (!request.getStatus().equals("Approve")) {
+            if (!request.getStatus().equals("Approved")) {
                 continue;
             }
             Object[] row = new Object[3];
@@ -84,10 +84,7 @@ public class MatchingJPanel extends javax.swing.JPanel {
 
         houseRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Message", "Status", "Provider"
@@ -108,16 +105,12 @@ public class MatchingJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        houseRequestJTable.setPreferredSize(new java.awt.Dimension(150, 65));
         houseRequestJTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(houseRequestJTable);
 
         clientRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Message", "Status", "Sender"
@@ -138,9 +131,6 @@ public class MatchingJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        clientRequestJTable.setMaximumSize(new java.awt.Dimension(2147483647, 65));
-        clientRequestJTable.setMinimumSize(new java.awt.Dimension(30, 65));
-        clientRequestJTable.setPreferredSize(new java.awt.Dimension(150, 65));
         clientRequestJTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(clientRequestJTable);
 

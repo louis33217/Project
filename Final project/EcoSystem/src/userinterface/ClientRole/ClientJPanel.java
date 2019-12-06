@@ -11,6 +11,7 @@ import Business.Organization.ClientOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ClientRequest;
 import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -77,11 +78,17 @@ public class ClientJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         helperLabel = new javax.swing.JLabel();
         doneButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel1.setText("Message:");
 
         messageLabel.setText("jLabel2");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel3.setText("Status:");
 
         statusLabel.setText("jLabel2");
@@ -92,59 +99,73 @@ public class ClientJPanel extends javax.swing.JPanel {
             }
         });
 
-        applyButton.setText("Apply");
+        applyButton.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        applyButton.setText("Apply for a room");
         applyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 applyButtonActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Helper:");
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel4.setText("Room provider: ");
 
         helperLabel.setText("jLabel2");
 
-        doneButton.setText("Done");
+        doneButton.setText("Check out");
         doneButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 doneButtonActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        jLabel2.setText("Looking for a place to stay?");
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        jLabel5.setText("Welcome to apply for a room at no cost ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(467, 467, 467)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(helperLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(helperLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(applyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(applyButton))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(610, 610, 610)
-                        .addComponent(doneButton)))
-                .addContainerGap(627, Short.MAX_VALUE))
+                        .addComponent(applyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(doneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(applyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel5))
+                .addContainerGap(429, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(503, 503, 503))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+                .addGap(55, 55, 55)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(messageLabel))
@@ -160,9 +181,9 @@ public class ClientJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(applyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(applyButton))
-                .addGap(79, 79, 79)
+                .addGap(39, 39, 39)
                 .addComponent(doneButton)
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -174,25 +195,32 @@ public class ClientJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String message = applyTextField.getText();
         request.setMessage(message);
-        request.setStatus("Apply");
+        request.setStatus("Under review");
         applyTextField.setText("");
         populateMessage(request);
         system.getWorkQueue().getWorkRequestList().add(request);
+        JOptionPane.showMessageDialog(null, "Your application is under review");
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
         // TODO add your handling code here:
-        request.setMessage("Done");
-        request.setStatus("None");
-        system.getWorkQueue().getWorkRequestList().remove(request);
-        UserAccount userAccount = request.getReceiver();
-        for (WorkRequest r : userAccount.getWorkQueue().getWorkRequestList()) {
-            if (r.getReceiver() != null && account.getUsername().equals(r.getReceiver().getUsername())) {
-                r.setMessage("Done");
-                r.setStatus("Apply");
-                r.setReceiver(null);
+        int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to check out your room? \nYou may have to queue up next time", "Checkout comfirmation", JOptionPane.YES_NO_OPTION);
+        if(n == 0){
+            JOptionPane.showMessageDialog(null,  "Alright good luck, wish you well");
+            request.setMessage("Done");
+            request.setStatus("None");
+            system.getWorkQueue().getWorkRequestList().remove(request);
+            UserAccount userAccount = request.getReceiver();
+            for (WorkRequest r : userAccount.getWorkQueue().getWorkRequestList()) {
+                if (r.getReceiver() != null && account.getUsername().equals(r.getReceiver().getUsername())) {
+                    r.setMessage("Done");
+                    r.setStatus("Under review");
+                    r.setReceiver(null);
+                }
             }
-        }
+        }else if (n == 1)
+            JOptionPane.showMessageDialog(null, "Room checkout canceled");
+        
         request.setReceiver(null);
         populateMessage(request);
     }//GEN-LAST:event_doneButtonActionPerformed
@@ -204,8 +232,10 @@ public class ClientJPanel extends javax.swing.JPanel {
     private javax.swing.JButton doneButton;
     private javax.swing.JLabel helperLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JLabel statusLabel;
     // End of variables declaration//GEN-END:variables

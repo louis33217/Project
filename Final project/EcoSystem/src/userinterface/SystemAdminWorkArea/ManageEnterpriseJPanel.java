@@ -253,6 +253,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             organizationDirectory.createOrganization(new MatchingOrganization());
         }
         populateTable();
+        JOptionPane.showMessageDialog(null, "Enterprise account registered! ");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

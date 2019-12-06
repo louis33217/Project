@@ -46,7 +46,7 @@
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="494" max="32767" attributes="0"/>
+              <EmptySpace pref="476" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,7 +136,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="22" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="NEW USER ACCOUNT SIGN UP"/>
+        <Property name="text" type="java.lang.String" value="NEW CLIENT ACCOUNT SIGN UP"/>
       </Properties>
     </Component>
   </SubComponents>

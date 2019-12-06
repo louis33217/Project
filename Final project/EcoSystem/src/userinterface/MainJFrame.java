@@ -103,6 +103,8 @@ public class MainJFrame extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
         defaultjPanel = new javax.swing.JPanel();
         welcomeLable = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TeamName final project application demo ");
@@ -110,7 +112,6 @@ public class MainJFrame extends javax.swing.JFrame {
         setLocation(new java.awt.Point(300, 150));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 500));
-        setType(java.awt.Window.Type.UTILITY);
 
         jSplitPane1.setDividerLocation(190);
         jSplitPane1.setDividerSize(3);
@@ -220,27 +221,43 @@ public class MainJFrame extends javax.swing.JFrame {
         container.setMaximumSize(new java.awt.Dimension(650, 650));
         container.setLayout(new java.awt.CardLayout());
 
+        defaultjPanel.setBackground(new java.awt.Color(204, 204, 255));
         defaultjPanel.setMaximumSize(new java.awt.Dimension(1300, 800));
         defaultjPanel.setMinimumSize(new java.awt.Dimension(1300, 800));
         defaultjPanel.setPreferredSize(new java.awt.Dimension(1300, 800));
 
-        welcomeLable.setText("Welcome System Admin");
+        welcomeLable.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        welcomeLable.setText("Hi, are you new to our service? ");
+
+        jTextArea1.setBackground(new java.awt.Color(204, 255, 204));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("This is a matching system for patients who can't afford housing while looking for long or short term medical treatment \nRooms are provided by lovely people at no cost.\n\nYou might want to sign up an account for applying a free room.\n\nRoom provided will be under approval.\nOnce approved, your room will be in the matching waitlist.");
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout defaultjPanelLayout = new javax.swing.GroupLayout(defaultjPanel);
         defaultjPanel.setLayout(defaultjPanelLayout);
         defaultjPanelLayout.setHorizontalGroup(
             defaultjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(defaultjPanelLayout.createSequentialGroup()
-                .addGap(253, 253, 253)
-                .addComponent(welcomeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(defaultjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(defaultjPanelLayout.createSequentialGroup()
+                        .addGap(376, 376, 376)
+                        .addComponent(welcomeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(defaultjPanelLayout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         defaultjPanelLayout.setVerticalGroup(
             defaultjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(defaultjPanelLayout.createSequentialGroup()
-                .addGap(259, 259, 259)
+                .addGap(46, 46, 46)
                 .addComponent(welcomeLable, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(372, Short.MAX_VALUE))
         );
 
         container.add(defaultjPanel, "card2");
@@ -350,6 +367,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void networkTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_networkTreeValueChanged
         // TODO add your handling code here:
+        welcomeLable.setText("");
         DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)networkTree.getLastSelectedPathComponent();
         if (selectedNode == null) {
             return;
@@ -428,7 +446,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton loginJButton;
     private javax.swing.JLabel loginJLabel;
     private javax.swing.JButton logoutJButton;
