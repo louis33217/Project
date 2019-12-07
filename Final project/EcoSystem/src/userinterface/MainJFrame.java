@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.undo.UndoManager;
 
 /**
  *
@@ -208,7 +209,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(logoutJButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(registerButton)
@@ -248,7 +249,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addGroup(defaultjPanelLayout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
         defaultjPanelLayout.setVerticalGroup(
             defaultjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,9 +403,35 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_networkTreeValueChanged
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        CardLayout layout = (CardLayout) container.getLayout();
-        container.add("NewClientJPanel", new NewClientJPanel(container, clientNetwork));
-        layout.next(container);
+
+/*
+        if (registerButton.getText().equals("Sign Up")) {
+            
+            loginJButton.setEnabled(false);
+            logoutJButton.setEnabled(false);
+            userNameJTextField.setEnabled(false);
+            passwordField.setEnabled(false);
+        */
+            CardLayout layout = (CardLayout) container.getLayout();
+            container.add("NewClientJPanel", new NewClientJPanel(container, clientNetwork));
+            layout.next(container);
+          /*  registerButton.setText("Undo");
+        
+        }
+        else if(registerButton.getText().equals("Undo")){
+            
+            loginJButton.setEnabled(true);
+            logoutJButton.setEnabled(true);
+            userNameJTextField.setEnabled(true);
+            passwordField.setEnabled(true);
+            
+            layout.previous(container);
+            
+            registerButton.setText("Sign Up");
+            
+        }
+            */
+        
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**

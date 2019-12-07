@@ -62,8 +62,10 @@ public class ProvideHousingJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel1.setText("Message");
 
+        backJButton.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         backJButton.setText("<<Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +92,7 @@ public class ProvideHousingJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel2.setText("Enterprise");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -110,7 +113,7 @@ public class ProvideHousingJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(612, Short.MAX_VALUE))
+                .addContainerGap(595, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
