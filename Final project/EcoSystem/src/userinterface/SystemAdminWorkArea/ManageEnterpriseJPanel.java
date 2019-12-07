@@ -227,7 +227,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
 
         if (network == null || type == null) {
-            JOptionPane.showMessageDialog(null, "Invalid Input!");
+            JOptionPane.showMessageDialog(null, "Please create a network first!");
             return;
         }
 

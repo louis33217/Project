@@ -13,6 +13,7 @@ import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ClientRequest;
 import java.awt.CardLayout;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.MainJFrame;
@@ -25,13 +26,15 @@ public class NewClientJPanel extends javax.swing.JPanel {
     private JPanel container;
     private Enterprise enterprise;
     private ClientOrganization organization;
+    private JButton button;
     /**
      * Creates new form NewClientJPanel
      */
-    public NewClientJPanel(JPanel container,Network network) {
+    public NewClientJPanel(JPanel container, Network network, JButton button) {
         this.container = container;
         this.enterprise = network.getEnterpriseDirectory().getEnterpriseList().get(0);
         this.organization = (ClientOrganization) enterprise.getOrganizationDirectory().getOrganizationList().get(0);
+        this.button = button;
         initComponents();
     }
 
@@ -167,6 +170,7 @@ public class NewClientJPanel extends javax.swing.JPanel {
         container.remove(this);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);
+        button.doClick();
         JOptionPane.showMessageDialog(null, "New client registered");
         
     }//GEN-LAST:event_submitJButtonActionPerformed

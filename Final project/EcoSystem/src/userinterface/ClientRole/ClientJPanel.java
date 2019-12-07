@@ -224,7 +224,7 @@ public class ClientJPanel extends javax.swing.JPanel {
     private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
         // TODO add your handling code here:
         int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to check out your room? \nYou may have to queue up next time", "Checkout comfirmation", JOptionPane.YES_NO_OPTION);
-        if(n == 0){
+        if (n == 0) {
             JOptionPane.showMessageDialog(null,  "Alright good luck, wish you well");
             request.setMessage("Done");
             request.setStatus("None");
@@ -233,15 +233,15 @@ public class ClientJPanel extends javax.swing.JPanel {
             for (WorkRequest r : userAccount.getWorkQueue().getWorkRequestList()) {
                 if (r.getReceiver() != null && account.getUsername().equals(r.getReceiver().getUsername())) {
                     r.setMessage("Done");
-                    r.setStatus("None");
+                    r.setStatus("Under review");
                     r.setReceiver(null);
                 }
             }
-        request.setReceiver(null);
-        populateMessage(request);
-        }else if (n == 1)
+            request.setReceiver(null);
+            populateMessage(request);
+        } else if (n == 1) {
             JOptionPane.showMessageDialog(null, "Room checkout canceled");
-        
+        }
     }//GEN-LAST:event_doneButtonActionPerformed
 
 

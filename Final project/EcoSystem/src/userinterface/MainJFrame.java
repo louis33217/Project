@@ -80,6 +80,28 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         model.reload();
     }
+    
+    public void loginPerform() {
+        loginJButton.setEnabled(false);
+        loginJButton.setBorderPainted(false);
+        logoutJButton.setEnabled(true);
+        registerButton.setEnabled(false);
+        userNameJTextField.setEnabled(false);
+        passwordField.setEnabled(false);
+        networkTree.setEnabled(false);
+    }
+    
+    public void logoutPerform() {
+        System.out.println("userinterface.MainJFrame.logoutPerform()");
+        logoutJButton.setEnabled(false);
+        userNameJTextField.setEnabled(true);
+        passwordField.setEnabled(true);
+        loginJButton.setEnabled(true);
+        loginJButton.setBorderPainted(true);
+        registerButton.setEnabled(true);
+        networkTree.setEnabled(true);
+        logoutJButton.setText("Logout");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -340,24 +362,11 @@ public class MainJFrame extends javax.swing.JFrame {
             layout.next(container);
         }
         
-//        typeJComboBox.setEnabled(false);
-        loginJButton.setEnabled(false);
-        loginJButton.setBorderPainted(false);
-        logoutJButton.setEnabled(true);
-        registerButton.setEnabled(false);
-        userNameJTextField.setEnabled(false);
-        passwordField.setEnabled(false);
+        loginPerform();
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
-//        typeJComboBox.setEnabled(true);
-        logoutJButton.setEnabled(false);
-        userNameJTextField.setEnabled(true);
-        passwordField.setEnabled(true);
-        loginJButton.setEnabled(true);
-        loginJButton.setBorderPainted(true);
-        registerButton.setEnabled(true);
-
+        logoutPerform();
         userNameJTextField.setText("");
         passwordField.setText("");
 
@@ -403,35 +412,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_networkTreeValueChanged
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-
-/*
-        if (registerButton.getText().equals("Sign Up")) {
-            
-            loginJButton.setEnabled(false);
-            logoutJButton.setEnabled(false);
-            userNameJTextField.setEnabled(false);
-            passwordField.setEnabled(false);
-        */
-            CardLayout layout = (CardLayout) container.getLayout();
-            container.add("NewClientJPanel", new NewClientJPanel(container, clientNetwork));
-            layout.next(container);
-          /*  registerButton.setText("Undo");
-        
-        }
-        else if(registerButton.getText().equals("Undo")){
-            
-            loginJButton.setEnabled(true);
-            logoutJButton.setEnabled(true);
-            userNameJTextField.setEnabled(true);
-            passwordField.setEnabled(true);
-            
-            layout.previous(container);
-            
-            registerButton.setText("Sign Up");
-            
-        }
-            */
-        
+        loginPerform();
+        logoutJButton.setText("Cancel");
+        CardLayout layout = (CardLayout) container.getLayout();
+        container.add("NewClientJPanel", new NewClientJPanel(container, clientNetwork, logoutJButton));
+        layout.next(container);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
